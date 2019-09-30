@@ -12,7 +12,7 @@ public class DBHelper {
         
     }
 
-    public static DBHelper getInstance(){
+    public static DBHelper Instance(){
         return _Instance;
     }
     
