@@ -7,6 +7,7 @@ package CNJava_QuanLyGiangVien;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -104,13 +105,31 @@ public class MainForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jUserNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUserNameTextFieldActionPerformed
-        // TODO add your handling code here:
+        _CheckLogin();
     }//GEN-LAST:event_jUserNameTextFieldActionPerformed
 
     private void jLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoginButtonActionPerformed
-        // TODO add your handling code here:
+        _CheckLogin();
     }//GEN-LAST:event_jLoginButtonActionPerformed
-
+    
+    @SuppressWarnings("deprecation")
+    private void _CheckLogin(){
+        if (_CheckAccount() == true){
+            GiangVien.Instance.show();
+        }else{
+            JOptionPane.showMessageDialog(rootPane,"Wrong username or password" );
+        }
+    }
+    
+    private boolean _CheckAccount(){
+        String Username = "";
+        String Password = "";
+        if (Username == "" && Password == ""){
+            return true;
+        }
+        return false;
+    }
+    
     /**
      * @param args the command line arguments
      */

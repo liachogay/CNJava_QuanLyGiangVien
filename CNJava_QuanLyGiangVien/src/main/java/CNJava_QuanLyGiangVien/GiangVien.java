@@ -10,18 +10,16 @@ package CNJava_QuanLyGiangVien;
  * @author ASUS
  */
 public class GiangVien extends javax.swing.JFrame {
-    private static final GiangVien _Instance = new GiangVien();
-
-    public static GiangVien Instance(){
-        return _Instance;
-    }
+    public final static GiangVien Instance=new GiangVien();
     /**
      * Creates new form GiangVien
      */
     public GiangVien() {
         initComponents();
     }
-
+    
+     
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
