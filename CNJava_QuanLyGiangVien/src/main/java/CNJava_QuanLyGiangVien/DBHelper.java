@@ -16,12 +16,13 @@ public class DBHelper {
         return _Instance;
     }
     
-    public void Connect() throws SQLException,ClassNotFoundException {
-        String hostName = "";
+    public Connection Connect() throws SQLException,ClassNotFoundException {
+        String hostName = "DESKTOP-1LS8MPD\\SQLEXPRESS";
         String sqlInstanceName = "";
-        String database = "";
-        String userName = "";
+        String database = "qlgv";
+        String userName = "DESKTOP-1LS8MPD\\ASUS";
         String passWord ="";
+        return Connect(hostName,sqlInstanceName,database,userName,passWord);
     }
     
     private Connection Connect(String hostName,String sqlInstanceName,
@@ -38,4 +39,6 @@ public class DBHelper {
         
         return connect;
     }
+    
+    
 }
