@@ -7,8 +7,6 @@ package CNJava_QuanLyGiangVien;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -25,11 +23,6 @@ public class MainForm extends javax.swing.JFrame {
         initComponents();
     }
 
-    private void Test() throws ClassNotFoundException, SQLException{
-        Connection conn = DBHelper.Instance().Connect();
-        JOptionPane.showMessageDialog(rootPane, conn);
-    }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -128,12 +121,10 @@ public class MainForm extends javax.swing.JFrame {
         }
     }
     
-    
     private boolean _CheckAccount(){
-        String Username = jUserNameTextField.getText().trim();
-        String Password = jPasswordTextField.getText().trim();
-            JOptionPane.showMessageDialog(rootPane,Username + " "+Password );
-        if (Username == "aa" && Password == "aa"){
+        String Username = "";
+        String Password = "";
+        if (Username == "" && Password == ""){
             return true;
         }
         return false;
