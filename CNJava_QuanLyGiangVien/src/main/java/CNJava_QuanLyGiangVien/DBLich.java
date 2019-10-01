@@ -5,13 +5,17 @@
  */
 package CNJava_QuanLyGiangVien;
 
+import java.sql.Date;
+
 /**
  *
  * @author ASUS
  */
-public class DangNhap {
-    public String Username;
-    public String Password;
-    
-    
+public class DBLich {
+    public String Phong;
+    public int TietBatDau;
+    public int TietKetThuc;
+    public Date Ngay;
+    public String Thu;
+    public String MaGV;
 }
