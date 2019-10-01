@@ -18,7 +18,7 @@ public class DBHelper {
     
     public Connection Connect() throws SQLException,ClassNotFoundException {
         String hostName = "DESKTOP-1LS8MPD\\SQLEXPRESS";
-        String sqlInstanceName = "";
+        String sqlInstanceName = "SQLEXPRESS";
         String database = "qlgv";
         String userName = "DESKTOP-1LS8MPD\\ASUS";
         String passWord ="";
@@ -29,7 +29,7 @@ public class DBHelper {
                             String database,String userName,String passWord) throws SQLException,ClassNotFoundException{
         
         //Tìm driver cho DB SQLServer
-        Class.forName("net.sourceforge.jtds.jdbc.Drive");
+        Class.forName("net.sourceforge.jtds.jdbc.Driver");
         
         //Ví d? : jdbc:jtds:sqlserver://localhost:1433/simplehr;instance=SQLEXPRESS
         String connectionURL = "jdbc:jtds:sqlserver://"+hostName+":1433/"+
