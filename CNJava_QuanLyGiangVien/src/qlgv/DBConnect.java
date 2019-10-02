@@ -13,22 +13,58 @@ import java.sql.*;
  * @author Phi Ngo
  */
 public class DBConnect {
-    private Connection con;
+    public final static DBConnect Instance=new DBConnect();
+
     private Statement st;
     private ResultSet rs;
     
     public DBConnect(){
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/qlgv","root","");
-            st = con.createStatement();
-            
-            
-        }catch (Exception ex){
-            System.out.println("Error: " + ex);
-        }
         
     }
+    
+    public Connection GetConnection(){
+        String hostName ="localhost";
+        String port = "3306";
+        String databaseName ="qlgv";
+        String userName ="root";
+        String passWord = "";
+        
+        return GetConnection(hostName,port,databaseName,userName,passWord);
+    }
+    
+    private Connection GetConnection(String hostName,String port,String databaseName,
+                                        String userName,String passWord){
+        Connection ConnectBack = null;
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            ConnectBack = DriverManager.getConnection("jdbc:mysql://"+hostName+":"+port+"/"+
+                                                        databaseName,userName,passWord);
+        }catch(Exception ex){
+            System.out.println("Error: " + ex);
+        }
+        return ConnectBack;
+    }
+    
+    public Statement GetStatement(){
+        Statement StatementBack = null;
+        try{
+            StatementBack = GetConnection().createStatement();
+        }catch(Exception ex){
+            System.out.println("Error: " + ex);
+        }
+        return StatementBack;
+    }
+    
+    public Statement GetStatement(Connection conn){
+        Statement StatementBack = null;
+        try{
+            StatementBack = conn.createStatement();
+        }catch(Exception ex){
+            System.out.println("Error: " + ex);
+        }
+        return StatementBack;
+    }
+    
     public void getData(){
         try {
             String query = "select * from login";
@@ -43,6 +79,17 @@ public class DBConnect {
         } catch (Exception ex) {
             System.out.println(ex);
         }
+    }
+    
+    public ResultSet GetData(String query){
+        ResultSet ResultBack =null;
+        Statement state = GetStatement();
+        try{
+            ResultBack = state.executeQuery(query);
+        } catch(Exception ex){
+            System.out.println(ex);
+        }
+        return ResultBack;
     }
     
 }
