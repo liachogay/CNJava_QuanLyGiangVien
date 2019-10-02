@@ -5,12 +5,8 @@
  */
 package qlgv;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Vector;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
 /**
  *
@@ -24,17 +20,36 @@ public class GiangVien extends javax.swing.JFrame {
     public GiangVien() {
         initComponents();
         _InitColumNameJTableGV();
+        _InitColumNameJTableKhoa();
+        _InitColumNameJTableLop();
+        _InitColumNameJTableLich();
     }
     
     @SuppressWarnings("unchecked")
     private void _InitColumNameJTableGV(){
         Vector RowData = new Vector();
-        jTableGV.setModel(new DefaultTableModel(RowData,GetColumNameJTableGB()));
+        jTableGV.setModel(new DefaultTableModel(RowData,_GetColumNameJTableGB()));
     }
     
     @SuppressWarnings("unchecked")
-    private Vector GetColumNameJTableGB(){
-        
+    private void _InitColumNameJTableKhoa(){
+        Vector RowData = new Vector();
+        jTableKhoa.setModel(new DefaultTableModel(RowData,_GetColumNameJtableKhoa()));
+    }
+    
+    @SuppressWarnings("unchecked")
+    private void _InitColumNameJTableLop(){
+        Vector RowData = new Vector();
+        jTableLop.setModel(new DefaultTableModel(RowData,_GetColumNameJtableLop()));
+    }
+    
+    private void _InitColumNameJTableLich(){
+        Vector RowData = new Vector();
+        jTableLich.setModel(new DefaultTableModel(RowData,_GetColumNameJtableLop()));
+    }
+    
+    @SuppressWarnings("unchecked")
+    private Vector _GetColumNameJTableGB(){
         Vector ColumnName = new Vector();
         ColumnName.add(("Ten"));
         ColumnName.add(("Gioi tinh"));
@@ -43,6 +58,33 @@ public class GiangVien extends javax.swing.JFrame {
         ColumnName.add(("Dia chi"));
         ColumnName.add(("Luong"));
         ColumnName.add(("MaGV"));
+        return ColumnName;
+    }
+    
+    @SuppressWarnings("unchecked")
+    private Vector _GetColumNameJtableKhoa(){
+        Vector ColumnName = new Vector();
+        ColumnName.add(("Ma khoa"));
+        ColumnName.add(("Ten khoa"));
+        ColumnName.add(("Ngay thanh lap"));
+        return ColumnName;
+    }
+    
+    @SuppressWarnings("unchecked")
+    private Vector _GetColumNameJtableLop(){
+        Vector ColumnName = new Vector();
+        ColumnName.add(("Ma lop"));
+        ColumnName.add(("Ten lop"));
+        ColumnName.add(("Ma khoa"));
+        return ColumnName;
+    }
+    
+    @SuppressWarnings("unchecked")
+    private Vector _GetColumNameJtableLich(){
+        Vector ColumnName = new Vector();
+        ColumnName.add(("Ma lop"));
+        ColumnName.add(("Ten lop"));
+        ColumnName.add(("Ma khoa"));
         return ColumnName;
     }
     
