@@ -45,16 +45,6 @@ public class DBConnect {
         return ConnectBack;
     }
     
-    public Statement GetStatement(){
-        Statement StatementBack = null;
-        try{
-            StatementBack = GetConnection().createStatement();
-        }catch(Exception ex){
-            System.out.println("Error: " + ex);
-        }
-        return StatementBack;
-    }
-    
     public Statement GetStatement(Connection conn){
         Statement StatementBack = null;
         try{
@@ -82,10 +72,13 @@ public class DBConnect {
     }
     
     public ResultSet GetData(String query){
+        Connection conn = GetConnection();
         ResultSet ResultBack =null;
-        Statement state = GetStatement();
+        Statement state = null;
         try{
+            state = conn.createStatement();
             ResultBack = state.executeQuery(query);
+            conn.close();
         } catch(Exception ex){
             System.out.println(ex);
         }
