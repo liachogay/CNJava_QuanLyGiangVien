@@ -78,7 +78,6 @@ public class DBConnect {
         try{
             state = conn.createStatement();
             ResultBack = state.executeQuery(query);
-            conn.close();
         } catch(Exception ex){
             System.out.println(ex);
         }

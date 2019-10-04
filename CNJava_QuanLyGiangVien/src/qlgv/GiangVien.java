@@ -5,6 +5,7 @@
  */
 package qlgv;
 
+import java.sql.*;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,20 +28,18 @@ public class GiangVien extends javax.swing.JFrame {
     
     @SuppressWarnings("unchecked")
     private void _InitColumNameJTableGV(){
-        Vector RowData = new Vector();
-        jTableGV.setModel(new DefaultTableModel(RowData,_GetColumNameJTableGB()));
+        jTableGV.setModel(new DefaultTableModel(_GetRowJTableGV(),_GetColumNameJTableGV()));
     }
     
     @SuppressWarnings("unchecked")
     private void _InitColumNameJTableKhoa(){
-        Vector RowData = new Vector();
-        jTableKhoa.setModel(new DefaultTableModel(RowData,_GetColumNameJtableKhoa()));
+        jTableKhoa.setModel(new DefaultTableModel(_GetRowJTableKhoa(),_GetColumNameJtableKhoa()));
     }
     
     @SuppressWarnings("unchecked")
     private void _InitColumNameJTableLop(){
         Vector RowData = new Vector();
-        jTableLop.setModel(new DefaultTableModel(RowData,_GetColumNameJtableLop()));
+        jTableLop.setModel(new DefaultTableModel(_GetRowJtableLop(),_GetColumNameJtableLop()));
     }
     
     private void _InitColumNameJTableLich(){
@@ -49,15 +48,17 @@ public class GiangVien extends javax.swing.JFrame {
     }
     
     @SuppressWarnings("unchecked")
-    private Vector _GetColumNameJTableGB(){
+    private Vector _GetColumNameJTableGV(){
         Vector ColumnName = new Vector();
-        ColumnName.add(("Ten"));
-        ColumnName.add(("Gioi tinh"));
+        ColumnName.add(("Ma GV"));
+        ColumnName.add(("Ma khoa"));
+        ColumnName.add(("Ma lop"));
+        ColumnName.add(("Ho ten"));
         ColumnName.add(("Hoc vi"));
+        ColumnName.add(("Luong"));
         ColumnName.add(("Que quan"));
         ColumnName.add(("Dia chi"));
-        ColumnName.add(("Luong"));
-        ColumnName.add(("MaGV"));
+        ColumnName.add(("Gioi tinh"));
         return ColumnName;
     }
     
@@ -74,8 +75,9 @@ public class GiangVien extends javax.swing.JFrame {
     private Vector _GetColumNameJtableLop(){
         Vector ColumnName = new Vector();
         ColumnName.add(("Ma lop"));
-        ColumnName.add(("Ten lop"));
         ColumnName.add(("Ma khoa"));
+        ColumnName.add(("Ten lop"));
+        ColumnName.add(("Si so"));
         return ColumnName;
     }
     
@@ -86,6 +88,69 @@ public class GiangVien extends javax.swing.JFrame {
         ColumnName.add(("Ten lop"));
         ColumnName.add(("Ma khoa"));
         return ColumnName;
+    }
+    
+    @SuppressWarnings("unchecked")
+    private Vector _GetRowJTableGV(){
+        Vector RowReturn = new Vector();
+        try {
+            ResultSet Data = DBConnect.Instance.GetData("Select * from giangvien");
+            while (Data.next()){
+                Vector Temp = new Vector();
+                Temp.add(Data.getString(0));
+                Temp.add(Data.getString(1));
+                Temp.add(Data.getString(2));
+                Temp.add(Data.getString(3));
+                Temp.add(Data.getString(4));
+                Temp.add(Data.getInt(5));
+                Temp.add(Data.getString(6));
+                Temp.add(Data.getString(7));
+                Temp.add(Data.getInt(8));
+                RowReturn.add(Temp);
+            }
+            DBConnect.Instance.GetConnection().close();
+            return RowReturn;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return RowReturn;
+    }
+    
+    private Vector _GetRowJTableKhoa(){
+        Vector RowReturn = new Vector();
+        try {
+            ResultSet Data = DBConnect.Instance.GetData("Select * from khoa");
+            while (Data.next()){
+                Vector Temp = new Vector();
+                Temp.add(Data.getString(0));
+                Temp.add(Data.getString(1));
+                Temp.add(Data.getDate(2));
+            }
+            DBConnect.Instance.GetConnection().close();
+            return RowReturn;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return RowReturn;
+    }
+    
+    private Vector _GetRowJtableLop(){
+        Vector RowReturn = new Vector();
+        try {
+            ResultSet Data = DBConnect.Instance.GetData("Select * from lop");
+            while (Data.next()){
+                Vector Temp = new Vector();
+                Temp.add(Data.getString(0));
+                Temp.add(Data.getString(1));
+                Temp.add(Data.getDate(2));
+                Temp.add(Data.getInt(3));
+            }
+            DBConnect.Instance.GetConnection().close();
+            return RowReturn;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return RowReturn;
     }
     
     @SuppressWarnings("unchecked")
