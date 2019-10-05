@@ -97,18 +97,17 @@ public class GiangVien extends javax.swing.JFrame {
             ResultSet Data = DBConnect.Instance.GetData("Select * from giangvien");
             while (Data.next()){
                 Vector Temp = new Vector();
-                Temp.add(Data.getString(0));
-                Temp.add(Data.getString(1));
-                Temp.add(Data.getString(2));
-                Temp.add(Data.getString(3));
-                Temp.add(Data.getString(4));
-                Temp.add(Data.getInt(5));
-                Temp.add(Data.getString(6));
-                Temp.add(Data.getString(7));
-                Temp.add(Data.getInt(8));
+                Temp.add(Data.getString("MaGV"));
+                Temp.add(Data.getString("MaKhoa"));
+                Temp.add(Data.getString("MaLop"));
+                Temp.add(Data.getString("HoTen"));
+                Temp.add(Data.getString("HocVi"));
+                Temp.add(Data.getInt("Luong"));
+                Temp.add(Data.getString("QueQuan"));
+                Temp.add(Data.getString("DiaChi"));
+                Temp.add(_CheckSex(Data.getInt("GioiTinh")));
                 RowReturn.add(Temp);
             }
-            DBConnect.Instance.GetConnection().close();
             return RowReturn;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -116,17 +115,18 @@ public class GiangVien extends javax.swing.JFrame {
         return RowReturn;
     }
     
+    @SuppressWarnings("unchecked")
     private Vector _GetRowJTableKhoa(){
         Vector RowReturn = new Vector();
         try {
             ResultSet Data = DBConnect.Instance.GetData("Select * from khoa");
             while (Data.next()){
                 Vector Temp = new Vector();
-                Temp.add(Data.getString(0));
-                Temp.add(Data.getString(1));
-                Temp.add(Data.getDate(2));
+                Temp.add(Data.getString("MaKhoa"));
+                Temp.add(Data.getString("TenKhoa"));
+                Temp.add(Data.getDate("NgayThanhLap"));
+                RowReturn.add(Temp);
             }
-            DBConnect.Instance.GetConnection().close();
             return RowReturn;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -134,23 +134,44 @@ public class GiangVien extends javax.swing.JFrame {
         return RowReturn;
     }
     
+    @SuppressWarnings("unchecked")
     private Vector _GetRowJtableLop(){
         Vector RowReturn = new Vector();
         try {
             ResultSet Data = DBConnect.Instance.GetData("Select * from lop");
             while (Data.next()){
                 Vector Temp = new Vector();
-                Temp.add(Data.getString(0));
-                Temp.add(Data.getString(1));
-                Temp.add(Data.getDate(2));
-                Temp.add(Data.getInt(3));
+                Temp.add(Data.getString("MaLop"));
+                Temp.add(Data.getString("MaKhoa"));
+                Temp.add(Data.getString("TenLop"));
+                Temp.add(Data.getInt("SiSo"));
+                RowReturn.add(Temp);
             }
-            DBConnect.Instance.GetConnection().close();
             return RowReturn;
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return RowReturn;
+    }
+    
+    private void _UploadRowSelectedJTabltGv(Vector Data){
+        txtName.setText(Data.get(3).toString());
+        txtSex.setText(Data.get(8).toString()); //gioi tinh
+        txtDegree.setText(Data.get(4).toString()); //bang cap
+        txtCountry.setText(Data.get(6).toString()); //que quan
+        txtAddress.setText(Data.get(7).toString()); //dia dia chi
+        txtSalary.setText(Data.get(5).toString()); // luong
+        txtMaGV.setText(Data.get(0).toString());
+    }
+    
+    private String _CheckSex(int index){
+        String Result = null;
+        if (index == 0){
+            Result ="Nam";
+        }else{
+            Result = "Nu";
+        }
+        return Result;
     }
     
     @SuppressWarnings("unchecked")
@@ -333,6 +354,11 @@ public class GiangVien extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableGV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableGVMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableGV);
 
         Add.setText("Them");
@@ -457,6 +483,11 @@ public class GiangVien extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableKhoa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableKhoaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableKhoa);
 
         Add1.setText("Them");
@@ -797,6 +828,19 @@ public class GiangVien extends javax.swing.JFrame {
     private void txttenGVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttenGVActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txttenGVActionPerformed
+
+    private void jTableGVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableGVMouseClicked
+        // TODO add your handling code here:
+        Vector Temp = new Vector();
+        for(int i=0;i<jTableGV.getColumnCount();i++){
+            Temp.add(jTableGV.getValueAt(jTableGV.getSelectedRow(), i));
+        }
+        _UploadRowSelectedJTabltGv(Temp);
+    }//GEN-LAST:event_jTableGVMouseClicked
+
+    private void jTableKhoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableKhoaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTableKhoaMouseClicked
 
     /**
      * @param args the command line arguments
