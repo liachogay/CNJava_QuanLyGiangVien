@@ -154,7 +154,7 @@ public class GiangVien extends javax.swing.JFrame {
         return RowReturn;
     }
     
-    private void _UploadRowSelectedJTabltGv(Vector Data){
+    private void _UploadRowSelectedJTableGv(Vector Data){
         txtName.setText(Data.get(3).toString());
         txtSex.setText(Data.get(8).toString()); //gioi tinh
         txtDegree.setText(Data.get(4).toString()); //bang cap
@@ -163,6 +163,19 @@ public class GiangVien extends javax.swing.JFrame {
         txtSalary.setText(Data.get(5).toString()); // luong
         txtMaGV.setText(Data.get(0).toString());
     }
+    
+    private void _UploadRowSelectedJTableKhoa(Vector Data){
+        txtMaKhoa.setText(Data.get(0).toString());
+        txtTenKhoa.setText(Data.get(1).toString());
+        txtNgayThanhLap.setText(Data.get(2).toString());
+    }
+    
+    private void _UploadRowSelectedJTableLop(Vector Data){
+        txtMaLop.setText(Data.get(1).toString());
+        txtTenLop.setText(Data.get(2).toString());
+        txtLopKhoa.setText(Data.get(0).toString());
+    }
+    
     
     private String _CheckSex(int index){
         String Result = null;
@@ -256,18 +269,6 @@ public class GiangVien extends javax.swing.JFrame {
         Address.setText("Dia chi");
 
         Salary.setText("Luong");
-
-        txtName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
-            }
-        });
-
-        txtSex.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSexActionPerformed(evt);
-            }
-        });
 
         MaGV.setText("MaGV");
 
@@ -560,6 +561,11 @@ public class GiangVien extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableLop.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableLopMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jTableLop);
 
         Add2.setText("Them");
@@ -793,14 +799,6 @@ public class GiangVien extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_EditActionPerformed
 
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
-
-    private void txtSexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSexActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSexActionPerformed
-
     private void txtTenKhoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenKhoaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTenKhoaActionPerformed
@@ -835,12 +833,26 @@ public class GiangVien extends javax.swing.JFrame {
         for(int i=0;i<jTableGV.getColumnCount();i++){
             Temp.add(jTableGV.getValueAt(jTableGV.getSelectedRow(), i));
         }
-        _UploadRowSelectedJTabltGv(Temp);
+        _UploadRowSelectedJTableGv(Temp);
     }//GEN-LAST:event_jTableGVMouseClicked
 
     private void jTableKhoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableKhoaMouseClicked
         // TODO add your handling code here:
+        Vector Temp = new Vector();
+        for(int i=0;i<jTableKhoa.getColumnCount();i++){
+            Temp.add(jTableKhoa.getValueAt(jTableKhoa.getSelectedRow(), i));
+        }
+        _UploadRowSelectedJTableKhoa(Temp);
     }//GEN-LAST:event_jTableKhoaMouseClicked
+
+    private void jTableLopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableLopMouseClicked
+        // TODO add your handling code here:
+        Vector Temp = new Vector();
+        for(int i=0;i<jTableLop.getColumnCount();i++){
+            Temp.add(jTableLop.getValueAt(jTableLop.getSelectedRow(), i));
+        }
+        _UploadRowSelectedJTableLop(Temp);
+    }//GEN-LAST:event_jTableLopMouseClicked
 
     /**
      * @param args the command line arguments
