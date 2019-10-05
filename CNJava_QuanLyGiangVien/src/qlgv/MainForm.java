@@ -122,8 +122,10 @@ public class MainForm extends javax.swing.JFrame {
             String Username = jUserNameTextField.getText();
             String Password = jPasswordTextField.getText();
             ResultSet Data = DBConnect.Instance.GetData("Select * from login");
-            while(Data.next()){
-                if (Username == Data.getString(0) && Password == Data.getString(1)){
+            while(Data.next())
+            {
+                if (Username.equals(Data.getString("username")) && Password.equals(Data.getString("password"))){
+                    
                     DBConnect.Instance.GetConnection().close();
                     return true;
                 }
