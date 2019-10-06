@@ -120,8 +120,8 @@ public class MainForm extends javax.swing.JFrame {
     private boolean _CheckAccount(){
         try {
             String Username = jUserNameTextField.getText();
-            String Password = jPasswordTextField.getText();
-            ResultSet Data = DBConnect.Instance.GetData("login");
+            String Password = jPasswordTextField.getText();           
+            ResultSet Data = DBConnect.Instance.GetData("Select * from login");
             while(Data.next())
             {
                 if (Username.equals(Data.getString("username")) && Password.equals(Data.getString("password"))){
