@@ -162,6 +162,8 @@ public class GiangVien extends javax.swing.JFrame {
         txtAddress.setText(Data.get(7).toString()); //dia dia chi
         txtSalary.setText(Data.get(5).toString()); // luong
         txtMaGV.setText(Data.get(0).toString());
+        txtMaKhoaGV.setText(Data.get(1).toString());
+        txtMaLopGV.setText(Data.get(2).toString());
     }
     
     private void _UploadRowSelectedJTableKhoa(Vector Data){
@@ -209,6 +211,10 @@ public class GiangVien extends javax.swing.JFrame {
         txtSalary = new javax.swing.JTextField();
         MaGV = new javax.swing.JLabel();
         txtMaGV = new javax.swing.JTextField();
+        MaKhoaGV = new javax.swing.JLabel();
+        MaLopGV = new javax.swing.JLabel();
+        txtMaKhoaGV = new javax.swing.JTextField();
+        txtMaLopGV = new javax.swing.JTextField();
         jPanelGVDown = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableGV = new javax.swing.JTable();
@@ -275,6 +281,10 @@ public class GiangVien extends javax.swing.JFrame {
 
         MaGV.setText("MaGV");
 
+        MaKhoaGV.setText("Ma khoa");
+
+        MaLopGV.setText("Ma lop");
+
         javax.swing.GroupLayout jPanelGVUpLayout = new javax.swing.GroupLayout(jPanelGVUp);
         jPanelGVUp.setLayout(jPanelGVUpLayout);
         jPanelGVUpLayout.setHorizontalGroup(
@@ -282,42 +292,55 @@ public class GiangVien extends javax.swing.JFrame {
             .addGroup(jPanelGVUpLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelGVUpLayout.createSequentialGroup()
+                    .addGroup(jPanelGVUpLayout.createSequentialGroup()
+                        .addComponent(MaKhoaGV)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanelGVUpLayout.createSequentialGroup()
+                        .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(Name)
-                                .addComponent(Degree))
-                            .addGap(18, 18, 18))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGVUpLayout.createSequentialGroup()
-                            .addComponent(Address)
-                            .addGap(19, 19, 19)))
-                    .addGroup(jPanelGVUpLayout.createSequentialGroup()
-                        .addComponent(Salary)
-                        .addGap(21, 21, 21)))
-                .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelGVUpLayout.createSequentialGroup()
-                        .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDegree, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Country)
-                            .addComponent(Sex))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSex, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(102, 102, 102))
-                    .addGroup(jPanelGVUpLayout.createSequentialGroup()
-                        .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanelGVUpLayout.createSequentialGroup()
+                                    .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Name)
+                                        .addComponent(Degree))
+                                    .addGap(18, 18, 18))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGVUpLayout.createSequentialGroup()
+                                    .addComponent(Address)
+                                    .addGap(19, 19, 19)))
                             .addGroup(jPanelGVUpLayout.createSequentialGroup()
-                                .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(204, 204, 204)
-                                .addComponent(MaGV)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtMaGV, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(Salary)
+                                .addGap(21, 21, 21)))
+                        .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelGVUpLayout.createSequentialGroup()
+                                .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDegree, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 31, Short.MAX_VALUE)
+                                .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Country)
+                                    .addComponent(Sex))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtSex, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(102, 102, 102))
+                            .addGroup(jPanelGVUpLayout.createSequentialGroup()
+                                .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelGVUpLayout.createSequentialGroup()
+                                        .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanelGVUpLayout.createSequentialGroup()
+                                                .addGap(1, 1, 1)
+                                                .addComponent(txtMaKhoaGV, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(204, 204, 204)
+                                        .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(MaGV)
+                                            .addComponent(MaLopGV))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtMaGV, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                                            .addComponent(txtMaLopGV))))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         jPanelGVUpLayout.setVerticalGroup(
             jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,7 +367,13 @@ public class GiangVien extends javax.swing.JFrame {
                     .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MaGV)
                     .addComponent(txtMaGV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MaKhoaGV)
+                    .addComponent(MaLopGV)
+                    .addComponent(txtMaKhoaGV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMaLopGV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jTableGV.setModel(new javax.swing.table.DefaultTableModel(
@@ -385,26 +414,26 @@ public class GiangVien extends javax.swing.JFrame {
         jPanelGVDown.setLayout(jPanelGVDownLayout);
         jPanelGVDownLayout.setHorizontalGroup(
             jPanelGVDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
             .addGroup(jPanelGVDownLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addComponent(Add)
-                .addGap(41, 41, 41)
+                .addGap(48, 48, 48)
                 .addComponent(Delete)
-                .addGap(49, 49, 49)
+                .addGap(60, 60, 60)
                 .addComponent(Edit)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelGVDownLayout.setVerticalGroup(
             jPanelGVDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelGVDownLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelGVDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Add)
                     .addComponent(Delete)
                     .addComponent(Edit))
-                .addGap(0, 177, Short.MAX_VALUE))
+                .addGap(0, 194, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout GVLayout = new javax.swing.GroupLayout(GV);
@@ -775,7 +804,7 @@ public class GiangVien extends javax.swing.JFrame {
                     .addComponent(Edit3)
                     .addComponent(Delete3)
                     .addComponent(Add3))
-                .addGap(0, 41, Short.MAX_VALUE))
+                .addGap(0, 192, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout LichLayout = new javax.swing.GroupLayout(Lich);
@@ -813,6 +842,33 @@ public class GiangVien extends javax.swing.JFrame {
 
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
         // TODO add your handling code here:
+        if (txtMaGV.getText() != null &&
+            txtMaKhoaGV.getText() != null &&
+            txtMaLopGV.getText() != null &&
+            txtName.getText() != null &&
+            txtSex.getText() != null &&
+            txtDegree.getText() != null &&
+            txtCountry.getText() != null &&
+            txtAddress.getText() != null &&
+            txtSalary.getText() != null){
+            int Sex = 0;
+            if (txtSex.getText().length()==2){
+                Sex=1;
+            }else{
+                Sex=0;
+            }
+            DBConnect.Instance.InsertDataGV(
+                    txtMaGV.getText(),
+                    txtMaKhoaGV.getText(),
+                    txtMaLopGV.getText(),
+                    txtName.getText(),
+                    txtDegree.getText(), 
+                    Integer.parseInt(txtSalary.getText()), 
+                    txtCountry.getText(),
+                    txtAddress.getText(),
+                    Sex);
+        }
+        _InitColumNameJTableGV();
     }//GEN-LAST:event_AddActionPerformed
 
     private void EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditActionPerformed
@@ -951,7 +1007,9 @@ public class GiangVien extends javax.swing.JFrame {
     private javax.swing.JLabel LopKhoa;
     private javax.swing.JLabel MaGV;
     private javax.swing.JLabel MaKhoa;
+    private javax.swing.JLabel MaKhoaGV;
     private javax.swing.JLabel MaLop;
+    private javax.swing.JLabel MaLopGV;
     private javax.swing.JLabel Name;
     private javax.swing.JLabel Ngaythanhlap;
     private javax.swing.JLabel Salary;
@@ -984,7 +1042,9 @@ public class GiangVien extends javax.swing.JFrame {
     private javax.swing.JTextField txtLopKhoa;
     private javax.swing.JTextField txtMaGV;
     private javax.swing.JTextField txtMaKhoa;
+    private javax.swing.JTextField txtMaKhoaGV;
     private javax.swing.JTextField txtMaLop;
+    private javax.swing.JTextField txtMaLopGV;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtNgayThanhLap;
     private javax.swing.JTextField txtSalary;

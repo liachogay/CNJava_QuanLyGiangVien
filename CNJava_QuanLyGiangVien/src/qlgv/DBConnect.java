@@ -40,7 +40,7 @@ public class DBConnect {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             ConnectBack = DriverManager.getConnection("jdbc:mysql://"+hostName+":"+port+"/"+
-                                                        databaseName,userName,passWord);
+                                                        databaseName+"?useUnicode=true&characterEncoding=utf-8",userName,passWord);
         }catch(Exception ex){
             System.out.println("Error: " + ex);
         }
@@ -100,6 +100,44 @@ public class DBConnect {
         return ResultBack;
     }
     
+    public void InsertDataGV(String MaGV,String MaKhoa,String MaLop,String HoTen,String HocVi,int Luong,
+                                String QueQuan,String DiaChi,int GioiTinh){
+       Connection conn = GetConnection();
+       String query = "INSERT INTO giangvien(MaGV, MaKhoa, MaLop, HoTen, HocVi, Luong, QueQuan, DiaChi, GioiTinh)"
+                       +" VALUES (?, ?, ?, ?, ?, ?, ?, ? , ?)";
+       try {
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, MaGV);
+            preparedStatement.setString(2, MaKhoa);
+            preparedStatement.setString(3, MaLop);
+            preparedStatement.setString(4, HoTen);
+            preparedStatement.setString(5, HocVi);
+            preparedStatement.setInt(6, Luong);
+            preparedStatement.setString(7, QueQuan);
+            preparedStatement.setString(8, DiaChi);
+            preparedStatement.setInt(9, GioiTinh);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void UpdateDataGV(){
+        
+    }
+    
+    public void DeleteDataGV(String id){
+        Connection conn = GetConnection();
+        String query = "DELETE FROM giangvien WHERE magv = '"+id+"' ";
+        Statement state = null;
+        try {
+            state = conn.createStatement();
+            state.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void InsertDataKhoa(String MaKhoa,String TenKhoa,Date NgayThanhLap){
         Connection conn = GetConnection();
         String query = "INSERT INTO khoa (MaKhoa, TenKhoa, NgayThanhLap) VALUES (?, ?, ?)";
@@ -128,7 +166,7 @@ public class DBConnect {
         } catch (SQLException ex) {
             Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
         }
-        }
+    }
     
     
     public void InsertDataLop(String MaLop,String MaKhoa,String TenLop,int SiSo){
