@@ -171,9 +171,10 @@ public class GiangVien extends javax.swing.JFrame {
     }
     
     private void _UploadRowSelectedJTableLop(Vector Data){
-        txtMaLop.setText(Data.get(1).toString());
+        txtMaLop.setText(Data.get(0).toString());
         txtTenLop.setText(Data.get(2).toString());
-        txtLopKhoa.setText(Data.get(0).toString());
+        txtLopKhoa.setText(Data.get(1).toString());
+        txtSiSo.setText(Data.get(3).toString());
     }
     
     
@@ -182,7 +183,7 @@ public class GiangVien extends javax.swing.JFrame {
         if (index == 0){
             Result ="Nam";
         }else{
-            Result = "Nu";
+            Result = "Nữ";
         }
         return Result;
     }
@@ -242,6 +243,8 @@ public class GiangVien extends javax.swing.JFrame {
         txtTenLop = new javax.swing.JTextField();
         txtMaLop = new javax.swing.JTextField();
         txtLopKhoa = new javax.swing.JTextField();
+        SiSo = new javax.swing.JLabel();
+        txtSiSo = new javax.swing.JTextField();
         Lich = new javax.swing.JPanel();
         jPanelLichUp = new javax.swing.JPanel();
         TenGV = new javax.swing.JLabel();
@@ -499,6 +502,11 @@ public class GiangVien extends javax.swing.JFrame {
         });
 
         Delete1.setText("Xoa");
+        Delete1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Delete1ActionPerformed(evt);
+            }
+        });
 
         Edit1.setText("Sua");
         Edit1.addActionListener(new java.awt.event.ActionListener() {
@@ -588,7 +596,7 @@ public class GiangVien extends javax.swing.JFrame {
         jPanelLopDown.setLayout(jPanelLopDownLayout);
         jPanelLopDownLayout.setHorizontalGroup(
             jPanelLopDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
             .addGroup(jPanelLopDownLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(Add2)
@@ -622,6 +630,8 @@ public class GiangVien extends javax.swing.JFrame {
             }
         });
 
+        SiSo.setText("Si so");
+
         javax.swing.GroupLayout jPanelLopUpLayout = new javax.swing.GroupLayout(jPanelLopUp);
         jPanelLopUp.setLayout(jPanelLopUpLayout);
         jPanelLopUpLayout.setHorizontalGroup(
@@ -629,15 +639,21 @@ public class GiangVien extends javax.swing.JFrame {
             .addGroup(jPanelLopUpLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanelLopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TenLop)
-                    .addComponent(MaLop)
-                    .addComponent(LopKhoa))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelLopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtTenLop, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
-                    .addComponent(txtMaLop, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtLopKhoa))
-                .addGap(285, 352, Short.MAX_VALUE))
+                    .addGroup(jPanelLopUpLayout.createSequentialGroup()
+                        .addComponent(SiSo)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtSiSo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelLopUpLayout.createSequentialGroup()
+                        .addGroup(jPanelLopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TenLop)
+                            .addComponent(MaLop)
+                            .addComponent(LopKhoa))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelLopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtTenLop, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                            .addComponent(txtMaLop, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtLopKhoa))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelLopUpLayout.setVerticalGroup(
             jPanelLopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -654,7 +670,11 @@ public class GiangVien extends javax.swing.JFrame {
                 .addGroup(jPanelLopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LopKhoa)
                     .addComponent(txtLopKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelLopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SiSo)
+                    .addComponent(txtSiSo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout LopLayout = new javax.swing.GroupLayout(Lop);
@@ -805,6 +825,10 @@ public class GiangVien extends javax.swing.JFrame {
 
     private void Add1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add1ActionPerformed
         // TODO add your handling code here:
+        if (txtMaKhoa.getText() != null && txtTenKhoa.getText() != null && txtNgayThanhLap.getText()!=null){
+            DBConnect.Instance.InsertDataKhoa(txtMaKhoa.getText(),txtTenKhoa.getText(),Date.valueOf(txtNgayThanhLap.getText()));
+        }
+        _InitColumNameJTableKhoa();
     }//GEN-LAST:event_Add1ActionPerformed
 
     private void Edit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit1ActionPerformed
@@ -813,6 +837,11 @@ public class GiangVien extends javax.swing.JFrame {
 
     private void Add2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add2ActionPerformed
         // TODO add your handling code here:
+        if (txtTenLop.getText() != null && txtMaLop.getText() != null && txtLopKhoa.getText()!=null
+                && txtSiSo.getText()!=null ){
+            DBConnect.Instance.InsertDataLop(txtMaLop.getText(),txtLopKhoa.getText(),txtTenLop.getText(),Integer.valueOf(txtSiSo.getText()));
+        }
+        _InitColumNameJTableLop();
     }//GEN-LAST:event_Add2ActionPerformed
 
     private void Edit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit2ActionPerformed
@@ -853,6 +882,14 @@ public class GiangVien extends javax.swing.JFrame {
         }
         _UploadRowSelectedJTableLop(Temp);
     }//GEN-LAST:event_jTableLopMouseClicked
+
+    private void Delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete1ActionPerformed
+        // TODO add your handling code here:
+        if (jTableKhoa.getRowCount()!=-1){
+            DBConnect.Instance.DeleteDataKhoa(txtMaKhoa.getText());
+        }
+        _InitColumNameJTableKhoa();
+    }//GEN-LAST:event_Delete1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -919,6 +956,7 @@ public class GiangVien extends javax.swing.JFrame {
     private javax.swing.JLabel Ngaythanhlap;
     private javax.swing.JLabel Salary;
     private javax.swing.JLabel Sex;
+    private javax.swing.JLabel SiSo;
     private javax.swing.JLabel TenGV;
     private javax.swing.JLabel TenKhoa;
     private javax.swing.JLabel TenLop;
@@ -951,6 +989,7 @@ public class GiangVien extends javax.swing.JFrame {
     private javax.swing.JTextField txtNgayThanhLap;
     private javax.swing.JTextField txtSalary;
     private javax.swing.JTextField txtSex;
+    private javax.swing.JTextField txtSiSo;
     private javax.swing.JTextField txtTenKhoa;
     private javax.swing.JTextField txtTenLop;
     private javax.swing.JTextField txttenGV;

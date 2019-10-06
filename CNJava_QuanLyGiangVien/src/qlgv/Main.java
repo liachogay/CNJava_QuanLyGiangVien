@@ -17,8 +17,6 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        DBConnect connect = new DBConnect();
-        connect.getData();
     }
     
 }
