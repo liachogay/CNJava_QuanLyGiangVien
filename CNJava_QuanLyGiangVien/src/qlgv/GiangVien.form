@@ -325,6 +325,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Xoa"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="Edit">
                   <Properties>
@@ -562,7 +565,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane3" alignment="0" pref="792" max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="Add2" min="-2" max="-2" attributes="0"/>
@@ -626,6 +629,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Xoa"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Delete2ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="Edit2">
                   <Properties>
@@ -643,45 +649,51 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="SiSo" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="MaLop" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="txtSiSo" min="-2" pref="88" max="-2" attributes="0"/>
+                                  <Component id="txtMaLop" min="-2" pref="183" max="-2" attributes="0"/>
+                                  <EmptySpace pref="443" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="TenLop" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="MaLop" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="LopKhoa" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="LopKhoa" min="-2" max="-2" attributes="0"/>
+                                          <Component id="SiSo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="txtSiSo" min="-2" pref="88" max="-2" attributes="0"/>
+                                          <Component id="txtLopKhoa" alignment="0" min="-2" pref="366" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtTenLop" alignment="0" pref="366" max="32767" attributes="0"/>
-                                      <Component id="txtMaLop" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
-                                      <Component id="txtLopKhoa" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="TenLop" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="txtTenLop" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="TenLop" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtTenLop" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="MaLop" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtMaLop" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="TenLop" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtTenLop" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="LopKhoa" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtLopKhoa" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -691,7 +703,7 @@
                               <Component id="SiSo" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtSiSo" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="53" max="32767" attributes="0"/>
+                          <EmptySpace pref="35" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -752,7 +764,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanelLichUp" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="jPanel8LichDown" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -767,53 +779,116 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="TenGV" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="LichKhoa" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="MaPhong" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="TietBD" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="Ngay" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="Thu" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="MaGVLIch" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txttenGV" pref="366" max="32767" attributes="0"/>
-                              <Component id="txtLichKhoa" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="txtMaPhong" min="-2" pref="150" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="txtMaGVLich" min="-2" pref="70" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="txtThu" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtNgay" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="txtTietBD" max="32767" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="TietKT" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="txtTietKT" min="-2" pref="70" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="456" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="MaPhong" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtMaPhong" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="TenGV" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txttenGV" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="TietBD" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtTietBD" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="TietKT" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtTietKT" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="LichKhoa" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtLichKhoa" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Ngay" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtNgay" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="67" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Thu" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtThu" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="20" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="MaGVLIch" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtMaGVLich" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="TenGV">
+                <Component class="javax.swing.JLabel" name="MaPhong">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Ten giang vien"/>
+                    <Property name="text" type="java.lang.String" value="Phong"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="LichKhoa">
+                <Component class="javax.swing.JTextField" name="txtMaPhong">
+                </Component>
+                <Component class="javax.swing.JLabel" name="TietBD">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Khoa"/>
+                    <Property name="text" type="java.lang.String" value="Tiet bat dau"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txttenGV">
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txttenGVActionPerformed"/>
-                  </Events>
+                <Component class="javax.swing.JTextField" name="txtTietBD">
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtLichKhoa">
+                <Component class="javax.swing.JLabel" name="TietKT">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Tiet ket thuc"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtTietKT">
+                </Component>
+                <Component class="javax.swing.JLabel" name="Ngay">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Ngay"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtNgay">
+                </Component>
+                <Component class="javax.swing.JLabel" name="Thu">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Thu"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtThu">
+                </Component>
+                <Component class="javax.swing.JLabel" name="MaGVLIch">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Ma GV"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtMaGVLich">
                 </Component>
               </SubComponents>
             </Container>
@@ -822,7 +897,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane4" alignment="0" pref="791" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" alignment="0" pref="792" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="Add3" min="-2" pref="79" max="-2" attributes="0"/>
@@ -837,14 +912,14 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jScrollPane4" min="-2" pref="307" max="-2" attributes="0"/>
+                          <Component id="jScrollPane4" min="-2" pref="220" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="Edit3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="Delete3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="Add3" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="192" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="230" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -868,6 +943,9 @@
                           </Table>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableLichMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -875,11 +953,17 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Them"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Add3ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="Delete3">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Xoa"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Delete3ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="Edit3">
                   <Properties>

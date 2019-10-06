@@ -15,7 +15,14 @@ import java.util.logging.Logger;
  * @author Phi Ngo
  */
 public class DBConnect {
-    public final static DBConnect Instance=new DBConnect();
+    private static DBConnect _Instance=null;
+    
+    public static DBConnect Instance(){
+        if (_Instance==null){
+            _Instance= new DBConnect();
+        }
+        return _Instance;
+    }
 
     private Statement st;
     private ResultSet rs;
@@ -55,22 +62,6 @@ public class DBConnect {
             System.out.println("Error: " + ex);
         }
         return StatementBack;
-    }
-    
-    public void getData(){
-        try {
-            String query = "select * from login";
-            rs = st.executeQuery(query);
-            System.out.println("Record from Database");
-            while(rs.next()){
-                String name = rs.getString("username");
-                String pass = rs.getString("password");
-                System.out.println("UName: " + name+ "Pass: " + pass);
-            }
-            
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
     }
     
     public ResultSet GetData(String query){
@@ -180,8 +171,58 @@ public class DBConnect {
             preparedStatement.setInt(4, SiSo); 
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void UpdateDataLop(){
+        
+    }
+    
+    public void DeleteDataLop(String id){
+        Connection conn = GetConnection();
+        String query = "DELETE FROM lop WHERE malop = '"+id+"' ";
+        Statement state = null;
+        try {
+            state = conn.createStatement();
+            state.executeUpdate(query);
+        } catch (SQLException ex) {
             Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void InsertDataLich(String Phong,int TietBD,int TietKT,Date Ngay,String Thu,String MaGV){
+        Connection conn = GetConnection();
+        String query = "INSERT INTO lich (Phong, TietBatDau, TietKetThuc, Ngay, Thu, MaGv) VALUES (?, ?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, Phong);
+            preparedStatement.setInt(2, TietBD);
+            preparedStatement.setInt(3, TietKT); 
+            preparedStatement.setDate(4, Ngay);  
+            preparedStatement.setString(5, Thu);  
+            preparedStatement.setString(6, MaGV); 
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void UpdateDataLich(){
+        
+    }
+    
+    public void DeleteDataLich(String id){
+        Connection conn = GetConnection();
+        String query = "DELETE FROM lich WHERE phong = '"+id+"' ";
+        Statement state = null;
+        try {
+            state = conn.createStatement();
+            state.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
     
 }

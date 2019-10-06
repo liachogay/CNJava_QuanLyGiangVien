@@ -44,7 +44,7 @@ public class GiangVien extends javax.swing.JFrame {
     
     private void _InitColumNameJTableLich(){
         Vector RowData = new Vector();
-        jTableLich.setModel(new DefaultTableModel(RowData,_GetColumNameJtableLop()));
+        jTableLich.setModel(new DefaultTableModel(_GetRowJtableLich(),_GetColumNameJtableLich()));
     }
     
     @SuppressWarnings("unchecked")
@@ -84,9 +84,12 @@ public class GiangVien extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     private Vector _GetColumNameJtableLich(){
         Vector ColumnName = new Vector();
-        ColumnName.add(("Ma lop"));
-        ColumnName.add(("Ten lop"));
-        ColumnName.add(("Ma khoa"));
+        ColumnName.add(("Phong"));
+        ColumnName.add(("Tiet bat dau"));
+        ColumnName.add(("Tiet ket thuc"));
+        ColumnName.add(("Ngay"));
+        ColumnName.add(("Thu"));
+        ColumnName.add(("Ma GV"));
         return ColumnName;
     }
     
@@ -94,7 +97,7 @@ public class GiangVien extends javax.swing.JFrame {
     private Vector _GetRowJTableGV(){
         Vector RowReturn = new Vector();
         try {
-            ResultSet Data = DBConnect.Instance.GetData("Select * from giangvien");
+            ResultSet Data = DBConnect.Instance().GetData("Select * from giangvien");
             while (Data.next()){
                 Vector Temp = new Vector();
                 Temp.add(Data.getString("MaGV"));
@@ -119,7 +122,7 @@ public class GiangVien extends javax.swing.JFrame {
     private Vector _GetRowJTableKhoa(){
         Vector RowReturn = new Vector();
         try {
-            ResultSet Data = DBConnect.Instance.GetData("Select * from khoa");
+            ResultSet Data = DBConnect.Instance().GetData("Select * from khoa");
             while (Data.next()){
                 Vector Temp = new Vector();
                 Temp.add(Data.getString("MaKhoa"));
@@ -138,13 +141,34 @@ public class GiangVien extends javax.swing.JFrame {
     private Vector _GetRowJtableLop(){
         Vector RowReturn = new Vector();
         try {
-            ResultSet Data = DBConnect.Instance.GetData("Select * from lop");
+            ResultSet Data = DBConnect.Instance().GetData("Select * from lop");
             while (Data.next()){
                 Vector Temp = new Vector();
                 Temp.add(Data.getString("MaLop"));
                 Temp.add(Data.getString("MaKhoa"));
                 Temp.add(Data.getString("TenLop"));
                 Temp.add(Data.getInt("SiSo"));
+                RowReturn.add(Temp);
+            }
+            return RowReturn;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return RowReturn;
+    }
+    
+    private Vector _GetRowJtableLich(){
+        Vector RowReturn = new Vector();
+        try {
+            ResultSet Data = DBConnect.Instance().GetData("Select * from lich");
+            while (Data.next()){
+                Vector Temp = new Vector();
+                Temp.add(Data.getString("Phong"));
+                Temp.add(Data.getInt("TietBatDau"));
+                Temp.add(Data.getInt("TietKetThuc"));
+                Temp.add(Data.getDate("Ngay"));
+                Temp.add(Data.getString("Thu"));
+                Temp.add(Data.getString("MaGV"));
                 RowReturn.add(Temp);
             }
             return RowReturn;
@@ -179,6 +203,14 @@ public class GiangVien extends javax.swing.JFrame {
         txtSiSo.setText(Data.get(3).toString());
     }
     
+    private void _UploadRowSelectedJTableLich(Vector Data){
+        txtMaPhong.setText(Data.get(0).toString());
+        txtTietBD.setText(Data.get(1).toString());
+        txtTietKT.setText(Data.get(2).toString());
+        txtNgay.setText(Data.get(3).toString());
+        txtThu.setText(Data.get(4).toString());
+        txtMaGVLich.setText(Data.get(5).toString());
+    }
     
     private String _CheckSex(int index){
         String Result = null;
@@ -253,10 +285,18 @@ public class GiangVien extends javax.swing.JFrame {
         txtSiSo = new javax.swing.JTextField();
         Lich = new javax.swing.JPanel();
         jPanelLichUp = new javax.swing.JPanel();
-        TenGV = new javax.swing.JLabel();
-        LichKhoa = new javax.swing.JLabel();
-        txttenGV = new javax.swing.JTextField();
-        txtLichKhoa = new javax.swing.JTextField();
+        MaPhong = new javax.swing.JLabel();
+        txtMaPhong = new javax.swing.JTextField();
+        TietBD = new javax.swing.JLabel();
+        txtTietBD = new javax.swing.JTextField();
+        TietKT = new javax.swing.JLabel();
+        txtTietKT = new javax.swing.JTextField();
+        Ngay = new javax.swing.JLabel();
+        txtNgay = new javax.swing.JTextField();
+        Thu = new javax.swing.JLabel();
+        txtThu = new javax.swing.JTextField();
+        MaGVLIch = new javax.swing.JLabel();
+        txtMaGVLich = new javax.swing.JTextField();
         jPanel8LichDown = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableLich = new javax.swing.JTable();
@@ -402,6 +442,11 @@ public class GiangVien extends javax.swing.JFrame {
         });
 
         Delete.setText("Xoa");
+        Delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteActionPerformed(evt);
+            }
+        });
 
         Edit.setText("Sua");
         Edit.addActionListener(new java.awt.event.ActionListener() {
@@ -613,6 +658,11 @@ public class GiangVien extends javax.swing.JFrame {
         });
 
         Delete2.setText("Xoa");
+        Delete2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Delete2ActionPerformed(evt);
+            }
+        });
 
         Edit2.setText("Sua");
         Edit2.addActionListener(new java.awt.event.ActionListener() {
@@ -625,7 +675,7 @@ public class GiangVien extends javax.swing.JFrame {
         jPanelLopDown.setLayout(jPanelLopDownLayout);
         jPanelLopDownLayout.setHorizontalGroup(
             jPanelLopDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
+            .addComponent(jScrollPane3)
             .addGroup(jPanelLopDownLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(Add2)
@@ -666,36 +716,40 @@ public class GiangVien extends javax.swing.JFrame {
         jPanelLopUpLayout.setHorizontalGroup(
             jPanelLopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLopUpLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addGroup(jPanelLopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelLopUpLayout.createSequentialGroup()
-                        .addComponent(SiSo)
+                        .addComponent(MaLop)
                         .addGap(18, 18, 18)
-                        .addComponent(txtSiSo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelLopUpLayout.createSequentialGroup()
-                        .addGroup(jPanelLopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtMaLop, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelLopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelLopUpLayout.createSequentialGroup()
+                            .addGroup(jPanelLopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(LopKhoa)
+                                .addComponent(SiSo))
+                            .addGap(30, 30, 30)
+                            .addGroup(jPanelLopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtSiSo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtLopKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanelLopUpLayout.createSequentialGroup()
                             .addComponent(TenLop)
-                            .addComponent(MaLop)
-                            .addComponent(LopKhoa))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelLopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtTenLop, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
-                            .addComponent(txtMaLop, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtLopKhoa))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(18, 18, 18)
+                            .addComponent(txtTenLop))))
+                .addGap(106, 106, 106))
         );
         jPanelLopUpLayout.setVerticalGroup(
             jPanelLopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLopUpLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanelLopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TenLop)
-                    .addComponent(txtTenLop, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
+                .addGap(35, 35, 35)
                 .addGroup(jPanelLopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MaLop)
                     .addComponent(txtMaLop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelLopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TenLop)
+                    .addComponent(txtTenLop, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanelLopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LopKhoa)
                     .addComponent(txtLopKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -703,7 +757,7 @@ public class GiangVien extends javax.swing.JFrame {
                 .addGroup(jPanelLopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SiSo)
                     .addComponent(txtSiSo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout LopLayout = new javax.swing.GroupLayout(Lop);
@@ -723,15 +777,17 @@ public class GiangVien extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Lop", Lop);
 
-        TenGV.setText("Ten giang vien");
+        MaPhong.setText("Phong");
 
-        LichKhoa.setText("Khoa");
+        TietBD.setText("Tiet bat dau");
 
-        txttenGV.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txttenGVActionPerformed(evt);
-            }
-        });
+        TietKT.setText("Tiet ket thuc");
+
+        Ngay.setText("Ngay");
+
+        Thu.setText("Thu");
+
+        MaGVLIch.setText("Ma GV");
 
         javax.swing.GroupLayout jPanelLichUpLayout = new javax.swing.GroupLayout(jPanelLichUp);
         jPanelLichUp.setLayout(jPanelLichUpLayout);
@@ -740,26 +796,56 @@ public class GiangVien extends javax.swing.JFrame {
             .addGroup(jPanelLichUpLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanelLichUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TenGV)
-                    .addComponent(LichKhoa))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelLichUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txttenGV, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
-                    .addComponent(txtLichKhoa))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(MaPhong)
+                    .addComponent(TietBD)
+                    .addComponent(Ngay)
+                    .addComponent(Thu)
+                    .addComponent(MaGVLIch))
+                .addGap(20, 20, 20)
+                .addGroup(jPanelLichUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelLichUpLayout.createSequentialGroup()
+                        .addComponent(txtMaPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelLichUpLayout.createSequentialGroup()
+                        .addComponent(txtMaGVLich, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLichUpLayout.createSequentialGroup()
+                        .addGroup(jPanelLichUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtThu, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNgay, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelLichUpLayout.createSequentialGroup()
+                                .addComponent(txtTietBD)
+                                .addGap(18, 18, 18)
+                                .addComponent(TietKT)))
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTietKT, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(456, 456, 456))))
         );
         jPanelLichUpLayout.setVerticalGroup(
             jPanelLichUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLichUpLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelLichUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MaPhong)
+                    .addComponent(txtMaPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(jPanelLichUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TenGV)
-                    .addComponent(txttenGV, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addComponent(TietBD)
+                    .addComponent(txtTietBD, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TietKT)
+                    .addComponent(txtTietKT, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanelLichUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LichKhoa)
-                    .addComponent(txtLichKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(67, Short.MAX_VALUE))
+                    .addComponent(Ngay)
+                    .addComponent(txtNgay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelLichUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Thu)
+                    .addComponent(txtThu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(jPanelLichUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MaGVLIch)
+                    .addComponent(txtMaGVLich, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jTableLich.setModel(new javax.swing.table.DefaultTableModel(
@@ -773,11 +859,26 @@ public class GiangVien extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableLich.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableLichMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jTableLich);
 
         Add3.setText("Them");
+        Add3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Add3ActionPerformed(evt);
+            }
+        });
 
         Delete3.setText("Xoa");
+        Delete3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Delete3ActionPerformed(evt);
+            }
+        });
 
         Edit3.setText("Sua");
 
@@ -785,7 +886,7 @@ public class GiangVien extends javax.swing.JFrame {
         jPanel8LichDown.setLayout(jPanel8LichDownLayout);
         jPanel8LichDownLayout.setHorizontalGroup(
             jPanel8LichDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
             .addGroup(jPanel8LichDownLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Add3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -798,13 +899,13 @@ public class GiangVien extends javax.swing.JFrame {
         jPanel8LichDownLayout.setVerticalGroup(
             jPanel8LichDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8LichDownLayout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8LichDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Edit3)
                     .addComponent(Delete3)
                     .addComponent(Add3))
-                .addGap(0, 192, Short.MAX_VALUE))
+                .addGap(0, 230, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout LichLayout = new javax.swing.GroupLayout(Lich);
@@ -818,7 +919,7 @@ public class GiangVien extends javax.swing.JFrame {
             LichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LichLayout.createSequentialGroup()
                 .addComponent(jPanelLichUp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(20, 20, 20)
                 .addComponent(jPanel8LichDown, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -857,7 +958,7 @@ public class GiangVien extends javax.swing.JFrame {
             }else{
                 Sex=0;
             }
-            DBConnect.Instance.InsertDataGV(
+            DBConnect.Instance().InsertDataGV(
                     txtMaGV.getText(),
                     txtMaKhoaGV.getText(),
                     txtMaLopGV.getText(),
@@ -882,7 +983,7 @@ public class GiangVien extends javax.swing.JFrame {
     private void Add1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add1ActionPerformed
         // TODO add your handling code here:
         if (txtMaKhoa.getText() != null && txtTenKhoa.getText() != null && txtNgayThanhLap.getText()!=null){
-            DBConnect.Instance.InsertDataKhoa(txtMaKhoa.getText(),txtTenKhoa.getText(),Date.valueOf(txtNgayThanhLap.getText()));
+            DBConnect.Instance().InsertDataKhoa(txtMaKhoa.getText(),txtTenKhoa.getText(),Date.valueOf(txtNgayThanhLap.getText()));
         }
         _InitColumNameJTableKhoa();
     }//GEN-LAST:event_Add1ActionPerformed
@@ -895,7 +996,7 @@ public class GiangVien extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (txtTenLop.getText() != null && txtMaLop.getText() != null && txtLopKhoa.getText()!=null
                 && txtSiSo.getText()!=null ){
-            DBConnect.Instance.InsertDataLop(txtMaLop.getText(),txtLopKhoa.getText(),txtTenLop.getText(),Integer.valueOf(txtSiSo.getText()));
+            DBConnect.Instance().InsertDataLop(txtMaLop.getText(),txtLopKhoa.getText(),txtTenLop.getText(),Integer.valueOf(txtSiSo.getText()));
         }
         _InitColumNameJTableLop();
     }//GEN-LAST:event_Add2ActionPerformed
@@ -907,10 +1008,6 @@ public class GiangVien extends javax.swing.JFrame {
     private void txtTenLopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenLopActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTenLopActionPerformed
-
-    private void txttenGVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttenGVActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txttenGVActionPerformed
 
     private void jTableGVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableGVMouseClicked
         // TODO add your handling code here:
@@ -941,11 +1038,59 @@ public class GiangVien extends javax.swing.JFrame {
 
     private void Delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete1ActionPerformed
         // TODO add your handling code here:
-        if (jTableKhoa.getRowCount()!=-1){
-            DBConnect.Instance.DeleteDataKhoa(txtMaKhoa.getText());
+        if (txtMaKhoa.getText() != null){
+            DBConnect.Instance().DeleteDataKhoa(txtMaKhoa.getText());
         }
         _InitColumNameJTableKhoa();
     }//GEN-LAST:event_Delete1ActionPerformed
+
+    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
+        // TODO add your handling code here:
+        if (txtMaGV.getText() != null){
+            DBConnect.Instance().DeleteDataGV(txtMaGV.getText());
+        }
+        _InitColumNameJTableGV();
+    }//GEN-LAST:event_DeleteActionPerformed
+
+    private void Delete2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete2ActionPerformed
+        // TODO add your handling code here:
+        if (txtMaLop.getText() != null){
+            DBConnect.Instance().DeleteDataLop(txtMaLop.getText());
+        }
+        _InitColumNameJTableLop();
+    }//GEN-LAST:event_Delete2ActionPerformed
+
+    private void jTableLichMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableLichMouseClicked
+        // TODO add your handling code here:
+        Vector Temp = new Vector();
+        for(int i=0;i<jTableLich.getColumnCount();i++){
+            Temp.add(jTableLich.getValueAt(jTableLich.getSelectedRow(), i));
+        }
+        _UploadRowSelectedJTableLich(Temp);
+    }//GEN-LAST:event_jTableLichMouseClicked
+
+    private void Add3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add3ActionPerformed
+        // TODO add your handling code here:
+        if (txtMaPhong.getText() != null && txtTietBD.getText() != null &&
+            txtNgay.getText() != null && txtTietKT.getText() != null &&
+            txtThu.getText() != null && txtMaGVLich.getText() != null ){
+            DBConnect.Instance().InsertDataLich(txtMaPhong.getText()
+                    , Integer.parseInt(txtTietBD.getText())
+                    , Integer.parseInt(txtTietKT.getText())
+                    , Date.valueOf(txtNgay.getText())
+                    , txtThu.getText()
+                    , txtMaGVLich.getText());
+        }
+        _InitColumNameJTableLich();
+    }//GEN-LAST:event_Add3ActionPerformed
+
+    private void Delete3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete3ActionPerformed
+        // TODO add your handling code here:
+        if (txtMaPhong.getText() != null){
+            DBConnect.Instance().DeleteDataLich(txtMaPhong.getText());
+        }
+        _InitColumNameJTableLich();
+    }//GEN-LAST:event_Delete3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1002,22 +1147,26 @@ public class GiangVien extends javax.swing.JFrame {
     private javax.swing.JPanel GV;
     private javax.swing.JPanel Khoa;
     private javax.swing.JPanel Lich;
-    private javax.swing.JLabel LichKhoa;
     private javax.swing.JPanel Lop;
     private javax.swing.JLabel LopKhoa;
     private javax.swing.JLabel MaGV;
+    private javax.swing.JLabel MaGVLIch;
     private javax.swing.JLabel MaKhoa;
     private javax.swing.JLabel MaKhoaGV;
     private javax.swing.JLabel MaLop;
     private javax.swing.JLabel MaLopGV;
+    private javax.swing.JLabel MaPhong;
     private javax.swing.JLabel Name;
+    private javax.swing.JLabel Ngay;
     private javax.swing.JLabel Ngaythanhlap;
     private javax.swing.JLabel Salary;
     private javax.swing.JLabel Sex;
     private javax.swing.JLabel SiSo;
-    private javax.swing.JLabel TenGV;
     private javax.swing.JLabel TenKhoa;
     private javax.swing.JLabel TenLop;
+    private javax.swing.JLabel Thu;
+    private javax.swing.JLabel TietBD;
+    private javax.swing.JLabel TietKT;
     private javax.swing.JPanel jPanel8LichDown;
     private javax.swing.JPanel jPanelGVDown;
     private javax.swing.JPanel jPanelGVUp;
@@ -1038,20 +1187,24 @@ public class GiangVien extends javax.swing.JFrame {
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtCountry;
     private javax.swing.JTextField txtDegree;
-    private javax.swing.JTextField txtLichKhoa;
     private javax.swing.JTextField txtLopKhoa;
     private javax.swing.JTextField txtMaGV;
+    private javax.swing.JTextField txtMaGVLich;
     private javax.swing.JTextField txtMaKhoa;
     private javax.swing.JTextField txtMaKhoaGV;
     private javax.swing.JTextField txtMaLop;
     private javax.swing.JTextField txtMaLopGV;
+    private javax.swing.JTextField txtMaPhong;
     private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtNgay;
     private javax.swing.JTextField txtNgayThanhLap;
     private javax.swing.JTextField txtSalary;
     private javax.swing.JTextField txtSex;
     private javax.swing.JTextField txtSiSo;
     private javax.swing.JTextField txtTenKhoa;
     private javax.swing.JTextField txtTenLop;
-    private javax.swing.JTextField txttenGV;
+    private javax.swing.JTextField txtThu;
+    private javax.swing.JTextField txtTietBD;
+    private javax.swing.JTextField txtTietKT;
     // End of variables declaration//GEN-END:variables
 }
