@@ -881,6 +881,11 @@ public class GiangVien extends javax.swing.JFrame {
         });
 
         Edit3.setText("Sua");
+        Edit3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Edit3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8LichDownLayout = new javax.swing.GroupLayout(jPanel8LichDown);
         jPanel8LichDown.setLayout(jPanel8LichDownLayout);
@@ -974,6 +979,34 @@ public class GiangVien extends javax.swing.JFrame {
 
     private void EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditActionPerformed
         // TODO add your handling code here:
+        if (txtMaGV.getText() != null &&
+            txtMaKhoaGV.getText() != null &&
+            txtMaLopGV.getText() != null &&
+            txtName.getText() != null &&
+            txtSex.getText() != null &&
+            txtDegree.getText() != null &&
+            txtCountry.getText() != null &&
+            txtAddress.getText() != null &&
+            txtSalary.getText() != null){
+            int Sex = 0;
+            if (txtSex.getText().length()==2){
+                Sex=1;
+            }else{
+                Sex=0;
+            }
+            DBConnect.Instance().UpdateDataGV(
+                    txtMaGV.getText(),
+                    txtMaKhoaGV.getText(),
+                    txtMaLopGV.getText(),
+                    txtName.getText(),
+                    txtDegree.getText(), 
+                    Integer.parseInt(txtSalary.getText()), 
+                    txtCountry.getText(),
+                    txtAddress.getText(),
+                    Sex);
+        }
+        _InitColumNameJTableGV();
+        
     }//GEN-LAST:event_EditActionPerformed
 
     private void txtTenKhoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenKhoaActionPerformed
@@ -990,6 +1023,10 @@ public class GiangVien extends javax.swing.JFrame {
 
     private void Edit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit1ActionPerformed
         // TODO add your handling code here:
+        if (txtMaKhoa.getText() != null && txtTenKhoa.getText() != null && txtNgayThanhLap.getText()!=null){
+            DBConnect.Instance().UpdateDataKhoa(txtMaKhoa.getText(),txtTenKhoa.getText(),Date.valueOf(txtNgayThanhLap.getText()));
+        }
+        _InitColumNameJTableKhoa();
     }//GEN-LAST:event_Edit1ActionPerformed
 
     private void Add2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add2ActionPerformed
@@ -1003,6 +1040,11 @@ public class GiangVien extends javax.swing.JFrame {
 
     private void Edit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit2ActionPerformed
         // TODO add your handling code here:
+        if (txtTenLop.getText() != null && txtMaLop.getText() != null && txtLopKhoa.getText()!=null
+                && txtSiSo.getText()!=null ){
+            DBConnect.Instance().UpdateDataLop(txtMaLop.getText(),txtLopKhoa.getText(),txtTenLop.getText(),Integer.valueOf(txtSiSo.getText()));
+        }
+        _InitColumNameJTableLop();
     }//GEN-LAST:event_Edit2ActionPerformed
 
     private void txtTenLopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenLopActionPerformed
@@ -1091,6 +1133,21 @@ public class GiangVien extends javax.swing.JFrame {
         }
         _InitColumNameJTableLich();
     }//GEN-LAST:event_Delete3ActionPerformed
+
+    private void Edit3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit3ActionPerformed
+        // TODO add your handling code here:if (txtMaPhong.getText() != null && txtTietBD.getText() != null &&
+        if (txtMaPhong.getText() != null && txtTietBD.getText() != null &&
+            txtNgay.getText() != null && txtTietKT.getText() != null &&
+            txtThu.getText() != null && txtMaGVLich.getText() != null ){
+            DBConnect.Instance().UpdateDataLich(txtMaPhong.getText()
+                    , Integer.parseInt(txtTietBD.getText())
+                    , Integer.parseInt(txtTietKT.getText())
+                    , Date.valueOf(txtNgay.getText())
+                    , txtThu.getText()
+                    , txtMaGVLich.getText());
+        }
+        _InitColumNameJTableLich();
+    }//GEN-LAST:event_Edit3ActionPerformed
 
     /**
      * @param args the command line arguments

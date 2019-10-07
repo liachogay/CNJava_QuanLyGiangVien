@@ -113,8 +113,28 @@ public class DBConnect {
         }
     }
     
-    public void UpdateDataGV(){
-        
+    public void UpdateDataGV(String MaGV,String MaKhoa,String MaLop,String HoTen,String HocVi,int Luong,
+                                String QueQuan,String DiaChi,int GioiTinh){
+        Connection conn = GetConnection();
+        String query = "UPDATE giangvien SET "
+                + "MaGV=?,MaKhoa=?,MaLop=?,HoTen=?,HocVi=?,Luong=?,QueQuan=?,DiaChi=?,GioiTinh=?"
+                + " WHERE MAGV =?";
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, MaGV);
+            preparedStatement.setString(2, MaKhoa);
+            preparedStatement.setString(3, MaLop);
+            preparedStatement.setString(4, HoTen);
+            preparedStatement.setString(5, HocVi);
+            preparedStatement.setInt(6, Luong);
+            preparedStatement.setString(7, QueQuan);
+            preparedStatement.setString(8, DiaChi);
+            preparedStatement.setInt(9, GioiTinh);
+            preparedStatement.setString(10,MaGV);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void DeleteDataGV(String id){
@@ -145,6 +165,17 @@ public class DBConnect {
     
     public void UpdateDataKhoa(String MaKhoa,String TenKhoa,Date NgayThanhLap){
         Connection conn = GetConnection();
+        String query = "UPDATE khoa SET MaKhoa=?,TenKhoa=?,NgayThanhLap=? WHERE MaKhoa = ?";
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, MaKhoa);
+            preparedStatement.setString(2, TenKhoa);
+            preparedStatement.setDate(3, NgayThanhLap);
+            preparedStatement.setString(4, MaKhoa);
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void DeleteDataKhoa(String id){
@@ -175,8 +206,20 @@ public class DBConnect {
         }
     }
     
-    public void UpdateDataLop(){
-        
+    public void UpdateDataLop(String MaLop,String MaKhoa,String TenLop,int SiSo){
+        Connection conn = GetConnection();
+        String query = "UPDATE lop SET MaLop=?,MaKhoa=?,TenLop=?,SiSo=? WHERE MaLop = ";
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, MaLop);
+            preparedStatement.setString(2, MaKhoa);
+            preparedStatement.setString(3, TenLop); 
+            preparedStatement.setInt(4, SiSo); 
+            preparedStatement.setString(5, MaLop); 
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
     
     public void DeleteDataLop(String id){
@@ -208,8 +251,22 @@ public class DBConnect {
         }
     }
     
-    public void UpdateDataLich(){
-        
+    public void UpdateDataLich(String Phong,int TietBD,int TietKT,Date Ngay,String Thu,String MaGV){
+        Connection conn = GetConnection();
+        String query = "UPDATE lich SET Phong=?,TietBatDau=?,TietKetThuc=?,Ngay=?,Thu=?,MaGV=? WHERE Phong = ?";
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, Phong);
+            preparedStatement.setInt(2, TietBD);
+            preparedStatement.setInt(3, TietKT); 
+            preparedStatement.setDate(4, Ngay);  
+            preparedStatement.setString(5, Thu);  
+            preparedStatement.setString(6, MaGV); 
+            preparedStatement.setString(7, Phong); 
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
     
     public void DeleteDataLich(String id){
