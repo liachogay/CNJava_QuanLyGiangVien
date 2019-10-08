@@ -307,23 +307,23 @@ public class GiangVien extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quan ly giang vien");
 
-        Name.setText("Ho ten");
+        Name.setText("Họ tên");
 
-        Sex.setText("Gioi tinh");
+        Sex.setText("Giới tính");
 
-        Degree.setText("Hoc vi");
+        Degree.setText("Học vị");
 
-        Country.setText("Que quan");
+        Country.setText("Quê quán");
 
-        Address.setText("Dia chi");
+        Address.setText("Địa chỉ");
 
-        Salary.setText("Luong");
+        Salary.setText("Lương");
 
-        MaGV.setText("MaGV");
+        MaGV.setText("Mã GV");
 
-        MaKhoaGV.setText("Ma khoa");
+        MaKhoaGV.setText("Mã khoa");
 
-        MaLopGV.setText("Ma lop");
+        MaLopGV.setText("Mã lớp");
 
         javax.swing.GroupLayout jPanelGVUpLayout = new javax.swing.GroupLayout(jPanelGVUp);
         jPanelGVUp.setLayout(jPanelGVUpLayout);
@@ -354,7 +354,7 @@ public class GiangVien extends javax.swing.JFrame {
                                 .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtDegree, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 31, Short.MAX_VALUE)
+                                .addGap(18, 30, Short.MAX_VALUE)
                                 .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Country)
                                     .addComponent(Sex))
@@ -496,7 +496,7 @@ public class GiangVien extends javax.swing.JFrame {
                 .addComponent(jPanelGVDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jTabbedPane1.addTab("Giang Vien", GV);
+        jTabbedPane1.addTab("Giảng viên", GV);
 
         TenKhoa.setText("Ten khoa");
 
