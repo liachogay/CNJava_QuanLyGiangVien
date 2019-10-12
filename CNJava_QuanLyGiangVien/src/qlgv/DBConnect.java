@@ -24,8 +24,6 @@ public class DBConnect {
         return _Instance;
     }
 
-    private Statement st;
-    private ResultSet rs;
     
     public DBConnect(){
         
@@ -208,7 +206,7 @@ public class DBConnect {
     
     public void UpdateDataLop(String MaLop,String MaKhoa,String TenLop,int SiSo){
         Connection conn = GetConnection();
-        String query = "UPDATE lop SET MaLop=?,MaKhoa=?,TenLop=?,SiSo=? WHERE MaLop = ";
+        String query = "UPDATE lop SET MaLop=?,MaKhoa=?,TenLop=?,SiSo=? WHERE MaLop = ?";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(query);
             preparedStatement.setString(1, MaLop);

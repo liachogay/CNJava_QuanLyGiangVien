@@ -7,6 +7,7 @@ package qlgv;
 
 import java.sql.*;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,6 +25,8 @@ public class GiangVien extends javax.swing.JFrame {
         _InitColumNameJTableKhoa();
         _InitColumNameJTableLop();
         _InitColumNameJTableLich();
+        FillComboMaKhoa();
+        FillComboMaLop();
     }
     
     @SuppressWarnings("unchecked")
@@ -50,46 +53,46 @@ public class GiangVien extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     private Vector _GetColumNameJTableGV(){
         Vector ColumnName = new Vector();
-        ColumnName.add(("Ma GV"));
-        ColumnName.add(("Ma khoa"));
-        ColumnName.add(("Ma lop"));
-        ColumnName.add(("Ho ten"));
-        ColumnName.add(("Hoc vi"));
-        ColumnName.add(("Luong"));
-        ColumnName.add(("Que quan"));
-        ColumnName.add(("Dia chi"));
-        ColumnName.add(("Gioi tinh"));
+        ColumnName.add(("Mã GV"));
+        ColumnName.add(("Mã khoa"));
+        ColumnName.add(("Mã lớp"));
+        ColumnName.add(("Họ tên"));
+        ColumnName.add(("Học vị"));
+        ColumnName.add(("Lươnng"));
+        ColumnName.add(("Quê quán"));
+        ColumnName.add(("Địa chị"));
+        ColumnName.add(("Giới tính"));
         return ColumnName;
     }
     
     @SuppressWarnings("unchecked")
     private Vector _GetColumNameJtableKhoa(){
         Vector ColumnName = new Vector();
-        ColumnName.add(("Ma khoa"));
-        ColumnName.add(("Ten khoa"));
-        ColumnName.add(("Ngay thanh lap"));
+        ColumnName.add(("Mã khoa"));
+        ColumnName.add(("Tên khoa"));
+        ColumnName.add(("Ngày thành lập"));
         return ColumnName;
     }
     
     @SuppressWarnings("unchecked")
     private Vector _GetColumNameJtableLop(){
         Vector ColumnName = new Vector();
-        ColumnName.add(("Ma lop"));
-        ColumnName.add(("Ma khoa"));
-        ColumnName.add(("Ten lop"));
-        ColumnName.add(("Si so"));
+        ColumnName.add(("Mã lớp"));
+        ColumnName.add(("Mã khoa"));
+        ColumnName.add(("Tên lớp"));
+        ColumnName.add(("Sĩ số"));
         return ColumnName;
     }
     
     @SuppressWarnings("unchecked")
     private Vector _GetColumNameJtableLich(){
         Vector ColumnName = new Vector();
-        ColumnName.add(("Phong"));
-        ColumnName.add(("Tiet bat dau"));
-        ColumnName.add(("Tiet ket thuc"));
-        ColumnName.add(("Ngay"));
-        ColumnName.add(("Thu"));
-        ColumnName.add(("Ma GV"));
+        ColumnName.add(("Phòng"));
+        ColumnName.add(("Tiết bắt đầu"));
+        ColumnName.add(("Tiết kết thúc"));
+        ColumnName.add(("Ngày"));
+        ColumnName.add(("Thứ"));
+        ColumnName.add(("Mã GV"));
         return ColumnName;
     }
     
@@ -97,6 +100,8 @@ public class GiangVien extends javax.swing.JFrame {
     private Vector _GetRowJTableGV(){
         Vector RowReturn = new Vector();
         try {
+            String TempHocVi = null;
+            int TempLuong = 0;
             ResultSet Data = DBConnect.Instance().GetData("Select * from giangvien");
             while (Data.next()){
                 Vector Temp = new Vector();
@@ -104,8 +109,10 @@ public class GiangVien extends javax.swing.JFrame {
                 Temp.add(Data.getString("MaKhoa"));
                 Temp.add(Data.getString("MaLop"));
                 Temp.add(Data.getString("HoTen"));
-                Temp.add(Data.getString("HocVi"));
-                Temp.add(Data.getInt("Luong"));
+                TempHocVi = Data.getString("HocVi");
+                TempLuong = Data.getInt("Luong");
+                Temp.add(TempHocVi);
+                Temp.add(_GetLuong(TempHocVi,TempLuong));
                 Temp.add(Data.getString("QueQuan"));
                 Temp.add(Data.getString("DiaChi"));
                 Temp.add(_CheckSex(Data.getInt("GioiTinh")));
@@ -186,8 +193,18 @@ public class GiangVien extends javax.swing.JFrame {
         txtAddress.setText(Data.get(7).toString()); //dia dia chi
         txtSalary.setText(Data.get(5).toString()); // luong
         txtMaGV.setText(Data.get(0).toString());
-        txtMaKhoaGV.setText(Data.get(1).toString());
-        txtMaLopGV.setText(Data.get(2).toString());
+        for (var i = 0; i<=jCbbMaKhoa.getItemCount();i++){
+            if (jCbbMaKhoa.getItemAt(i).equals(Data.get(1))){
+                jCbbMaKhoa.setSelectedIndex(i);
+                break;
+            }
+        }
+        for (var i = 0; i<=jCbbMaLop.getItemCount();i++){
+            if (jCbbMaLop.getItemAt(i).equals(Data.get(2))){
+                jCbbMaLop.setSelectedIndex(i);
+                break;
+            }
+        }
     }
     
     private void _UploadRowSelectedJTableKhoa(Vector Data){
@@ -245,14 +262,15 @@ public class GiangVien extends javax.swing.JFrame {
         txtMaGV = new javax.swing.JTextField();
         MaKhoaGV = new javax.swing.JLabel();
         MaLopGV = new javax.swing.JLabel();
-        txtMaKhoaGV = new javax.swing.JTextField();
-        txtMaLopGV = new javax.swing.JTextField();
+        jCbbMaKhoa = new javax.swing.JComboBox<>();
+        jCbbMaLop = new javax.swing.JComboBox<>();
         jPanelGVDown = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableGV = new javax.swing.JTable();
         Add = new javax.swing.JButton();
         Delete = new javax.swing.JButton();
         Edit = new javax.swing.JButton();
+        ClearGV = new javax.swing.JButton();
         Khoa = new javax.swing.JPanel();
         jPanelKhoaUp = new javax.swing.JPanel();
         TenKhoa = new javax.swing.JLabel();
@@ -267,6 +285,7 @@ public class GiangVien extends javax.swing.JFrame {
         Add1 = new javax.swing.JButton();
         Delete1 = new javax.swing.JButton();
         Edit1 = new javax.swing.JButton();
+        ClearKhoa = new javax.swing.JButton();
         Lop = new javax.swing.JPanel();
         jPanelLopDown = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -274,6 +293,7 @@ public class GiangVien extends javax.swing.JFrame {
         Add2 = new javax.swing.JButton();
         Delete2 = new javax.swing.JButton();
         Edit2 = new javax.swing.JButton();
+        ClearLop = new javax.swing.JButton();
         jPanelLopUp = new javax.swing.JPanel();
         TenLop = new javax.swing.JLabel();
         MaLop = new javax.swing.JLabel();
@@ -303,9 +323,10 @@ public class GiangVien extends javax.swing.JFrame {
         Add3 = new javax.swing.JButton();
         Delete3 = new javax.swing.JButton();
         Edit3 = new javax.swing.JButton();
+        ClearLich = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Quan ly giang vien");
+        setTitle("Quản lý giảng viên");
 
         Name.setText("Họ tên");
 
@@ -367,19 +388,19 @@ public class GiangVien extends javax.swing.JFrame {
                                 .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelGVUpLayout.createSequentialGroup()
-                                        .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(jPanelGVUpLayout.createSequentialGroup()
-                                                .addGap(1, 1, 1)
-                                                .addComponent(txtMaKhoaGV, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(204, 204, 204)
+                                                .addGap(2, 2, 2)
+                                                .addComponent(jCbbMaKhoa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addGap(160, 160, 160)
                                         .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(MaGV)
                                             .addComponent(MaLopGV))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(txtMaGV, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                                            .addComponent(txtMaLopGV))))
+                                            .addComponent(jCbbMaLop, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         jPanelGVUpLayout.setVerticalGroup(
@@ -411,8 +432,8 @@ public class GiangVien extends javax.swing.JFrame {
                 .addGroup(jPanelGVUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MaKhoaGV)
                     .addComponent(MaLopGV)
-                    .addComponent(txtMaKhoaGV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMaLopGV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCbbMaKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCbbMaLop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -434,24 +455,31 @@ public class GiangVien extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableGV);
 
-        Add.setText("Them");
+        Add.setText("Thêm");
         Add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddActionPerformed(evt);
             }
         });
 
-        Delete.setText("Xoa");
+        Delete.setText("Xoá");
         Delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteActionPerformed(evt);
             }
         });
 
-        Edit.setText("Sua");
+        Edit.setText("Sửa");
         Edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EditActionPerformed(evt);
+            }
+        });
+
+        ClearGV.setText("Làm mới");
+        ClearGV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClearGVActionPerformed(evt);
             }
         });
 
@@ -459,7 +487,7 @@ public class GiangVien extends javax.swing.JFrame {
         jPanelGVDown.setLayout(jPanelGVDownLayout);
         jPanelGVDownLayout.setHorizontalGroup(
             jPanelGVDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
             .addGroup(jPanelGVDownLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Add)
@@ -467,6 +495,8 @@ public class GiangVien extends javax.swing.JFrame {
                 .addComponent(Delete)
                 .addGap(60, 60, 60)
                 .addComponent(Edit)
+                .addGap(44, 44, 44)
+                .addComponent(ClearGV)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelGVDownLayout.setVerticalGroup(
@@ -477,7 +507,8 @@ public class GiangVien extends javax.swing.JFrame {
                 .addGroup(jPanelGVDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Add)
                     .addComponent(Delete)
-                    .addComponent(Edit))
+                    .addComponent(Edit)
+                    .addComponent(ClearGV))
                 .addGap(0, 194, Short.MAX_VALUE))
         );
 
@@ -498,11 +529,11 @@ public class GiangVien extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Giảng viên", GV);
 
-        TenKhoa.setText("Ten khoa");
+        TenKhoa.setText("Tên khoa");
 
-        MaKhoa.setText("Ma khoa");
+        MaKhoa.setText("Mã khoa");
 
-        Ngaythanhlap.setText("Ngay thanh lap");
+        Ngaythanhlap.setText("Ngày thành tập");
 
         txtTenKhoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -530,7 +561,7 @@ public class GiangVien extends javax.swing.JFrame {
                     .addComponent(txtTenKhoa, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
                     .addComponent(txtMaKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNgayThanhLap))
-                .addGap(285, 313, Short.MAX_VALUE))
+                .addGap(285, 325, Short.MAX_VALUE))
         );
         jPanelKhoaUpLayout.setVerticalGroup(
             jPanelKhoaUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -568,24 +599,31 @@ public class GiangVien extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTableKhoa);
 
-        Add1.setText("Them");
+        Add1.setText("Thêm");
         Add1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Add1ActionPerformed(evt);
             }
         });
 
-        Delete1.setText("Xoa");
+        Delete1.setText("Xoá");
         Delete1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Delete1ActionPerformed(evt);
             }
         });
 
-        Edit1.setText("Sua");
+        Edit1.setText("Sửa");
         Edit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Edit1ActionPerformed(evt);
+            }
+        });
+
+        ClearKhoa.setText("Làm mới");
+        ClearKhoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClearKhoaActionPerformed(evt);
             }
         });
 
@@ -601,6 +639,8 @@ public class GiangVien extends javax.swing.JFrame {
                 .addComponent(Delete1)
                 .addGap(49, 49, 49)
                 .addComponent(Edit1)
+                .addGap(48, 48, 48)
+                .addComponent(ClearKhoa)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelKhoaDownLayout.setVerticalGroup(
@@ -611,7 +651,8 @@ public class GiangVien extends javax.swing.JFrame {
                 .addGroup(jPanelKhoaDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Add1)
                     .addComponent(Delete1)
-                    .addComponent(Edit1))
+                    .addComponent(Edit1)
+                    .addComponent(ClearKhoa))
                 .addGap(0, 177, Short.MAX_VALUE))
         );
 
@@ -650,24 +691,31 @@ public class GiangVien extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTableLop);
 
-        Add2.setText("Them");
+        Add2.setText("Thêm");
         Add2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Add2ActionPerformed(evt);
             }
         });
 
-        Delete2.setText("Xoa");
+        Delete2.setText("Xoá");
         Delete2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Delete2ActionPerformed(evt);
             }
         });
 
-        Edit2.setText("Sua");
+        Edit2.setText("Sửa");
         Edit2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Edit2ActionPerformed(evt);
+            }
+        });
+
+        ClearLop.setText("Làm mới");
+        ClearLop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClearLopActionPerformed(evt);
             }
         });
 
@@ -683,6 +731,8 @@ public class GiangVien extends javax.swing.JFrame {
                 .addComponent(Delete2)
                 .addGap(49, 49, 49)
                 .addComponent(Edit2)
+                .addGap(54, 54, 54)
+                .addComponent(ClearLop)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelLopDownLayout.setVerticalGroup(
@@ -693,13 +743,14 @@ public class GiangVien extends javax.swing.JFrame {
                 .addGroup(jPanelLopDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Add2)
                     .addComponent(Delete2)
-                    .addComponent(Edit2))
+                    .addComponent(Edit2)
+                    .addComponent(ClearLop))
                 .addGap(0, 177, Short.MAX_VALUE))
         );
 
-        TenLop.setText("Ten lop");
+        TenLop.setText("Tên lớp");
 
-        MaLop.setText("Ma lop");
+        MaLop.setText("Mã lớp");
 
         LopKhoa.setText("Khoa");
 
@@ -709,7 +760,7 @@ public class GiangVien extends javax.swing.JFrame {
             }
         });
 
-        SiSo.setText("Si so");
+        SiSo.setText("Sĩ số");
 
         javax.swing.GroupLayout jPanelLopUpLayout = new javax.swing.GroupLayout(jPanelLopUp);
         jPanelLopUp.setLayout(jPanelLopUpLayout);
@@ -735,7 +786,7 @@ public class GiangVien extends javax.swing.JFrame {
                         .addGroup(jPanelLopUpLayout.createSequentialGroup()
                             .addComponent(TenLop)
                             .addGap(18, 18, 18)
-                            .addComponent(txtTenLop))))
+                            .addComponent(txtTenLop, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE))))
                 .addGap(106, 106, 106))
         );
         jPanelLopUpLayout.setVerticalGroup(
@@ -775,19 +826,19 @@ public class GiangVien extends javax.swing.JFrame {
                 .addComponent(jPanelLopDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jTabbedPane1.addTab("Lop", Lop);
+        jTabbedPane1.addTab("Lớp", Lop);
 
-        MaPhong.setText("Phong");
+        MaPhong.setText("Phòng");
 
-        TietBD.setText("Tiet bat dau");
+        TietBD.setText("Tiết bắt đầu");
 
-        TietKT.setText("Tiet ket thuc");
+        TietKT.setText("Tiết kết thúc");
 
-        Ngay.setText("Ngay");
+        Ngay.setText("Ngày");
 
-        Thu.setText("Thu");
+        Thu.setText("Thứ");
 
-        MaGVLIch.setText("Ma GV");
+        MaGVLIch.setText("Mã GV");
 
         javax.swing.GroupLayout jPanelLichUpLayout = new javax.swing.GroupLayout(jPanelLichUp);
         jPanelLichUp.setLayout(jPanelLichUpLayout);
@@ -866,24 +917,31 @@ public class GiangVien extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(jTableLich);
 
-        Add3.setText("Them");
+        Add3.setText("Thêm");
         Add3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Add3ActionPerformed(evt);
             }
         });
 
-        Delete3.setText("Xoa");
+        Delete3.setText("Xoá");
         Delete3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Delete3ActionPerformed(evt);
             }
         });
 
-        Edit3.setText("Sua");
+        Edit3.setText("Sửa");
         Edit3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Edit3ActionPerformed(evt);
+            }
+        });
+
+        ClearLich.setText("Làm mới");
+        ClearLich.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClearLichActionPerformed(evt);
             }
         });
 
@@ -891,7 +949,7 @@ public class GiangVien extends javax.swing.JFrame {
         jPanel8LichDown.setLayout(jPanel8LichDownLayout);
         jPanel8LichDownLayout.setHorizontalGroup(
             jPanel8LichDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
             .addGroup(jPanel8LichDownLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Add3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -899,6 +957,8 @@ public class GiangVien extends javax.swing.JFrame {
                 .addComponent(Delete3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(Edit3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(ClearLich)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8LichDownLayout.setVerticalGroup(
@@ -909,8 +969,9 @@ public class GiangVien extends javax.swing.JFrame {
                 .addGroup(jPanel8LichDownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Edit3)
                     .addComponent(Delete3)
-                    .addComponent(Add3))
-                .addGap(0, 230, Short.MAX_VALUE))
+                    .addComponent(Add3)
+                    .addComponent(ClearLich))
+                .addGap(0, 227, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout LichLayout = new javax.swing.GroupLayout(Lich);
@@ -928,7 +989,7 @@ public class GiangVien extends javax.swing.JFrame {
                 .addComponent(jPanel8LichDown, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Lich", Lich);
+        jTabbedPane1.addTab("Lịch", Lich);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -946,11 +1007,58 @@ public class GiangVien extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private String _GetLuong(String HocVi,int Luong){
+        String ResultBack = null;
+        
+        switch (HocVi){
+            case "Cử Nhân":
+                ResultBack = (Integer.valueOf(Luong)).toString();
+                break;
+            case "Thạc Sĩ":
+                Luong= Luong*15/10;
+                ResultBack = Integer.toString(Luong);
+                break;
+            case "Tiến Sĩ":
+                Luong = Luong *2;
+                ResultBack = Integer.toString(Luong);
+                break;
+            case "Phó Giáo Sư":
+                Luong = Luong *3;
+                ResultBack = Integer.toString(Luong); 
+                break;
+            case "Giáo Sư":
+                Luong = Luong *5;
+                ResultBack = Integer.toString(Luong); 
+                break;
+        }
+        return ResultBack;
+    }
+    
+    private int _LuongToData(String HocVi,String Luong){
+        int ResultBack = 0;
+        switch (HocVi){
+            case "Cử Nhân":
+                ResultBack = (Integer.valueOf(Luong));
+                break;
+            case "Thạc Sĩ":
+                ResultBack = Integer.valueOf(Luong)*10/15;
+                break;
+            case "Tiến Sĩ":
+                ResultBack = Integer.valueOf(Luong)/2;
+                break;
+            case "Phó Giáo Sư":
+                ResultBack = Integer.valueOf(Luong)/3;
+                break;
+            case "Giáo Sư":
+                ResultBack = Integer.valueOf(Luong)/5;
+                break;
+        }
+        return ResultBack;
+    }
+    
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
         // TODO add your handling code here:
         if (txtMaGV.getText() != null &&
-            txtMaKhoaGV.getText() != null &&
-            txtMaLopGV.getText() != null &&
             txtName.getText() != null &&
             txtSex.getText() != null &&
             txtDegree.getText() != null &&
@@ -963,13 +1071,15 @@ public class GiangVien extends javax.swing.JFrame {
             }else{
                 Sex=0;
             }
+            int TempLuong = 0;
+            TempLuong =_LuongToData(txtDegree.getText(),txtSalary.getText());
             DBConnect.Instance().InsertDataGV(
                     txtMaGV.getText(),
-                    txtMaKhoaGV.getText(),
-                    txtMaLopGV.getText(),
+                    jCbbMaKhoa.getSelectedItem().toString(),
+                    jCbbMaLop.getSelectedItem().toString(),
                     txtName.getText(),
                     txtDegree.getText(), 
-                    Integer.parseInt(txtSalary.getText()), 
+                    TempLuong, 
                     txtCountry.getText(),
                     txtAddress.getText(),
                     Sex);
@@ -980,8 +1090,6 @@ public class GiangVien extends javax.swing.JFrame {
     private void EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditActionPerformed
         // TODO add your handling code here:
         if (txtMaGV.getText() != null &&
-            txtMaKhoaGV.getText() != null &&
-            txtMaLopGV.getText() != null &&
             txtName.getText() != null &&
             txtSex.getText() != null &&
             txtDegree.getText() != null &&
@@ -996,8 +1104,8 @@ public class GiangVien extends javax.swing.JFrame {
             }
             DBConnect.Instance().UpdateDataGV(
                     txtMaGV.getText(),
-                    txtMaKhoaGV.getText(),
-                    txtMaLopGV.getText(),
+                    jCbbMaKhoa.getSelectedItem().toString(),
+                    jCbbMaLop.getSelectedItem().toString(),
                     txtName.getText(),
                     txtDegree.getText(), 
                     Integer.parseInt(txtSalary.getText()), 
@@ -1149,9 +1257,75 @@ public class GiangVien extends javax.swing.JFrame {
         _InitColumNameJTableLich();
     }//GEN-LAST:event_Edit3ActionPerformed
 
+    private void ClearGVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearGVActionPerformed
+        // TODO add your handling code here:
+        txtMaGV.setText("");
+        jCbbMaKhoa.setSelectedIndex(0);
+        jCbbMaLop.setSelectedIndex(0);
+        txtName.setText("");
+        txtSex.setText("");
+        txtDegree.setText("");
+        txtCountry.setText("");
+        txtAddress.setText("");
+        txtSalary.setText("");
+        txtSex.setText("");             
+        
+    }//GEN-LAST:event_ClearGVActionPerformed
+
+    private void ClearKhoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearKhoaActionPerformed
+        // TODO add your handling code here:
+        txtMaKhoa.setText("");
+        txtTenKhoa.setText("");
+        txtNgayThanhLap.setText("");
+    }//GEN-LAST:event_ClearKhoaActionPerformed
+
+    private void ClearLopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearLopActionPerformed
+        // TODO add your handling code here:
+        
+        txtTenLop.setText("");
+        txtMaLop.setText("");
+        txtLopKhoa.setText("");
+        txtSiSo.setText("");
+    }//GEN-LAST:event_ClearLopActionPerformed
+
+    private void ClearLichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearLichActionPerformed
+        // TODO add your handling code here:
+        txtMaPhong.setText("");
+        txtTietBD.setText("");
+        txtNgay.setText("");
+        txtTietKT.setText("");
+        txtThu.setText("");
+        txtMaGVLich.setText("");
+            
+    }//GEN-LAST:event_ClearLichActionPerformed
+
+    private void FillComboMaKhoa(){
+        try{
+            ResultSet Data = DBConnect.Instance().GetData("Select * from khoa");
+            jCbbMaKhoa.addItem("");
+            while (Data.next()){
+                String maKhoa = Data.getString("MaKhoa");
+                jCbbMaKhoa.addItem(maKhoa);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }
     /**
      * @param args the command line arguments
      */
+    private void FillComboMaLop(){
+        try{
+            ResultSet Data = DBConnect.Instance().GetData("Select * from lop");
+            jCbbMaLop.addItem("");
+            while (Data.next()){
+                String maLop = Data.getString("MaLop");
+                jCbbMaLop.addItem(maLop);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1191,6 +1365,10 @@ public class GiangVien extends javax.swing.JFrame {
     private javax.swing.JButton Add2;
     private javax.swing.JButton Add3;
     private javax.swing.JLabel Address;
+    private javax.swing.JButton ClearGV;
+    private javax.swing.JButton ClearKhoa;
+    private javax.swing.JButton ClearLich;
+    private javax.swing.JButton ClearLop;
     private javax.swing.JLabel Country;
     private javax.swing.JLabel Degree;
     private javax.swing.JButton Delete;
@@ -1224,6 +1402,8 @@ public class GiangVien extends javax.swing.JFrame {
     private javax.swing.JLabel Thu;
     private javax.swing.JLabel TietBD;
     private javax.swing.JLabel TietKT;
+    private javax.swing.JComboBox<String> jCbbMaKhoa;
+    private javax.swing.JComboBox<String> jCbbMaLop;
     private javax.swing.JPanel jPanel8LichDown;
     private javax.swing.JPanel jPanelGVDown;
     private javax.swing.JPanel jPanelGVUp;
@@ -1248,9 +1428,7 @@ public class GiangVien extends javax.swing.JFrame {
     private javax.swing.JTextField txtMaGV;
     private javax.swing.JTextField txtMaGVLich;
     private javax.swing.JTextField txtMaKhoa;
-    private javax.swing.JTextField txtMaKhoaGV;
     private javax.swing.JTextField txtMaLop;
-    private javax.swing.JTextField txtMaLopGV;
     private javax.swing.JTextField txtMaPhong;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtNgay;
