@@ -9,6 +9,11 @@ import java.awt.CardLayout;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Iterator;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,17 +26,36 @@ import javax.swing.JPanel;
  */
 public class Card extends javax.swing.JFrame {
 
+    protected List<String> _ListUrlImage=Arrays.asList(
+            "a.jpg",
+            "dark.jpg"
+    );
+    
+    protected HashMap<String,String> _ImageToResult = new HashMap<String,String>();
+    
+    
+    int pos = 0;
+    
     /**
      * Creates new form Card
      */
     public Card() {
         initComponents();
+        _AppendImageAndResult();
         showImage(pos);
         jPanel2.hide();
+        jPanel2.show(false);
+        for(String i :_ImageToResult.keySet()){
+            System.out.print(i + " " + _ImageToResult.get(i)+'\n');
+        }
         
     }
-    int pos = 0;
     
+    private void _AppendImageAndResult(){
+        for(int i=0;i<_ListUrlImage.size();i++){
+            _ImageToResult.put(_ListUrlImage.get(i), "Hello" + String.valueOf(i));
+        }
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -123,6 +147,19 @@ public class Card extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(180, 180, 180))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jButton1)
+                        .addGap(28, 28, 28)
+                        .addComponent(jButton2))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(46, 46, 46)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(58, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
