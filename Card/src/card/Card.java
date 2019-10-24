@@ -29,8 +29,9 @@ public class Card extends javax.swing.JFrame {
      */
     //<<<<<<< Updated upstream
     protected List<String> _ListUrlImage=Arrays.asList(
-            "a.jpg",
-            "dark.jpg"
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Cry.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Dance.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Dive.PNG"
     );
     
     protected HashMap<String,String> _ImageToResult = new HashMap<String,String>();
@@ -144,14 +145,15 @@ public class Card extends javax.swing.JFrame {
     
     public String[] getImage()
     {
-        File file = new File(getClass().getResource("/a.jpg").getFile());
+        File file = new File(getClass().getResource("").getFile());
         String[] imagesList = file.list();
         return imagesList;
     }
     
     public void showImage(int index)
     {
-        ImageIcon icon = new ImageIcon(getClass().getResource("a.jpg"));
+        
+        ImageIcon icon = new ImageIcon(_ListUrlImage.get(2));
         Image image = icon.getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_DEFAULT);
         jLabel1.setIcon(new ImageIcon(image));
         jLabel1.setText("");
