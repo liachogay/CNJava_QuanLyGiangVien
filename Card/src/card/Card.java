@@ -20,6 +20,7 @@ import java.io.*;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -29,16 +30,16 @@ import javax.swing.JTextField;
 public class Card extends javax.swing.JFrame {
 
     protected List<String> _ListUrlImage=Arrays.asList(
-            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Cry.PNG",
-            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dance.PNG",
-            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dive.PNG",
-            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Draw.PNG",
-            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fish.PNG",
-            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fly.PNG",
-            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Hug.PNG",
-            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Jump.PNG",
-            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Open.PNG",
-            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Play.PNG"
+            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Cry.PNG",
+            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dance.PNG",
+            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dive.PNG",
+            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Draw.PNG",
+            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fish.PNG",
+            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fly.PNG",
+            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Hug.PNG",
+            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Jump.PNG",
+            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Open.PNG",
+            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Play.PNG"
     );
     
     protected HashMap<String,String> _ImageToResult = new HashMap<String,String>();
@@ -72,7 +73,7 @@ public class Card extends javax.swing.JFrame {
         BufferedReader BR = null;
         try {
             //Get file by path file;
-            File a = new File("C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Data.txt");
+            File a = new File("E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Data.txt");
             List<String> TempFile = new ArrayList<>();
             BR = new BufferedReader(new FileReader(a));
             String line=null;
@@ -237,6 +238,7 @@ public class Card extends javax.swing.JFrame {
         jRadioButton2 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -288,17 +290,24 @@ public class Card extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("jRadioButton2");
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Tiếp Theo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Trở về");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jToggleButton1.setText("Kết Quả");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
             }
         });
 
@@ -307,21 +316,24 @@ public class Card extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jRadioButton1)
+                        .addGap(82, 82, 82)
+                        .addComponent(jRadioButton2)
+                        .addGap(42, 42, 42)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jToggleButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jRadioButton1)
-                .addGap(82, 82, 82)
-                .addComponent(jRadioButton2)
-                .addGap(97, 97, 97)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(52, 52, 52))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,7 +351,8 @@ public class Card extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE))))
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                            .addComponent(jToggleButton1))))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -361,6 +374,34 @@ public class Card extends javax.swing.JFrame {
             jPanel1.setVisible(true);
             jPanel2.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        String text = txtWords.getText();
+        String text1 = jRadioButton1.getText();
+        String text2 = jRadioButton2.getText();
+        int x = 0;
+        int y = 0 ;
+        if(jRadioButton1.isSelected()){
+        if(!text.equals(text1)){
+            // biến này để xử lý text không rỗng
+            y++;
+        }
+        else{
+            x++;
+        } 
+        }
+        else{
+        if(!text.equals(text2)) {
+            y++;
+        }
+        else{
+             x++;
+        }
+        }
+     JOptionPane.showMessageDialog(this, "Kết quả: " + x + "/10");
+     
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -406,6 +447,7 @@ public class Card extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTextField txtPhases;
     private javax.swing.JTextField txtSpell;
     private javax.swing.JTextField txtWords;
