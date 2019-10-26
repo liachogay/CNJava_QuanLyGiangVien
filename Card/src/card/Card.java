@@ -17,8 +17,10 @@ import java.util.List;
 import java.util.Scanner;
 import javax.swing.ImageIcon;
 import java.io.*;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTextField;
 
 /**
  *
@@ -51,11 +53,10 @@ public class Card extends javax.swing.JFrame {
     //Chữ -> cách phát âm (made by gg translate)
     protected HashMap<String,String> _ResultToPronounce = new HashMap<String,String>();
     
-    int pos = 0;
     public Card() {
         initComponents();
         _LoadDataDefault();
-        showImage(pos);
+        showImage(Math.abs((new Random().nextInt())%_Result.size()));
         jPanel2.hide();
 //<<<<<<< Updated upstream
         jPanel2.show(false);
@@ -90,10 +91,11 @@ public class Card extends javax.swing.JFrame {
                 _Result.add(TempFile.get(i));
                 _ResultToPronounce.put(TempFile.get(i), TempFile.get(i+1));
                 _ResultToSentence.put(TempFile.get(i),TempFile.get(i+2));
-            }   for(int i=0;i<_ResultToSentence.size();i++){
-                System.out.println(_Result.get(i) + " " + _ResultToPronounce.get(_Result.get(i))
-                        +  " " + _ResultToSentence.get(_Result.get(i)));
-            }
+            }   
+//            for(int i=0;i<_ResultToSentence.size();i++){
+//                System.out.println(_Result.get(i) + " " + _ResultToPronounce.get(_Result.get(i))
+//                        +  " " + _ResultToSentence.get(_Result.get(i)));
+//            }
         } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
         } finally {
@@ -180,22 +182,45 @@ public class Card extends javax.swing.JFrame {
      */
     
     
-    public String[] getImage()
-    {
-        File file = new File(getClass().getResource("").getFile());
-        String[] imagesList = file.list();
-        return imagesList;
-    }
     
     public void showImage(int index)
     {
-        
-        ImageIcon icon = new ImageIcon(_ListUrlImage.get(2));
+        ImageIcon icon = new ImageIcon(_ListUrlImage.get(index));
         Image image = icon.getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_DEFAULT);
         jLabel1.setIcon(new ImageIcon(image));
         jLabel1.setText("");
+        _ShowOptionChooseRoundOne(index);
+        _UploadDataToTextField(index);
+    }
+    
+    //Tiếng anh như cái ...
+    private void _ShowOptionChooseRoundOne(int index){
+        Random ran = new Random();
+        int[] Appear = new int[2];
+        int temp = ran.nextInt()%2;
+        int rand = ran.nextInt()%_Result.size();
+        if (temp == 0){
+            while (rand == index){
+                rand = ran.nextInt()%_Result.size();
+                Appear[0] = rand;
+            }
+            Appear[1] = index;
+        }else{
+            Appear[0] = index;
+            while (rand == index){
+                rand = ran.nextInt()%_Result.size();
+                Appear[1] = rand;
+            }
+        }
+        jRadioButton1.setText(_Result.get(Appear[0]));
+        jRadioButton2.setText(_Result.get(Appear[1]));
     }
 
+    private void _UploadDataToTextField(int index){
+        txtWords.setText(_Result.get(index));
+        txtSpell.setText(_ResultToPronounce.get(_Result.get(index)));
+        txtPhases.setText(_ResultToSentence.get(_Result.get(index)));
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
