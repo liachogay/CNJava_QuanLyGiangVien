@@ -30,16 +30,16 @@ import javax.swing.JTextField;
 public class Card extends javax.swing.JFrame {
 
     protected List<String> _ListUrlImage=Arrays.asList(
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Cry.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dance.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dive.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Draw.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fish.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fly.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Hug.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Jump.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Open.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Play.PNG"
+            "C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Cry.PNG",
+            "C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dance.PNG",
+            "C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dive.PNG",
+            "C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Draw.PNG",
+            "C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fish.PNG",
+            "C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fly.PNG",
+            "C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Hug.PNG",
+            "C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Jump.PNG",
+            "C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Open.PNG",
+            "C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Play.PNG"
     );
     
     protected HashMap<String,String> _ImageToResult = new HashMap<String,String>();
@@ -73,7 +73,7 @@ public class Card extends javax.swing.JFrame {
         BufferedReader BR = null;
         try {
             //Get file by path file;
-            File a = new File("E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Data.txt");
+            File a = new File("C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Data.txt");
             List<String> TempFile = new ArrayList<>();
             BR = new BufferedReader(new FileReader(a));
             String line=null;
