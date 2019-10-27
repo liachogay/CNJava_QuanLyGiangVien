@@ -381,6 +381,7 @@ public class Card extends javax.swing.JFrame {
         String text2 = jRadioButton2.getText();
         int x = 0;
         int y = 0 ;
+        int index = 0;
         if(jRadioButton1.isSelected()){
         if(!text.equals(text1)){
             // biến này để xử lý text không rỗng
@@ -399,7 +400,7 @@ public class Card extends javax.swing.JFrame {
         }
         }
      JOptionPane.showMessageDialog(this, "Kết quả: " + x + "/10");
-     
+     showImage(index);
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
