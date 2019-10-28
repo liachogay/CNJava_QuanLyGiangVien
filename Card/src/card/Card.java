@@ -30,16 +30,16 @@ import javax.swing.JTextField;
 public class Card extends javax.swing.JFrame {
 
     protected List<String> _ListUrlImage=Arrays.asList(
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Cry.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dance.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dive.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Draw.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fish.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fly.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Hug.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Jump.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Open.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Play.PNG"
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Cry.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Dance.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Dive.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Draw.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Fish.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Fly.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Hug.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Jump.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Open.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Play.PNG"
     );
     
     protected HashMap<String,String> _ImageToResult = new HashMap<String,String>();
@@ -75,7 +75,7 @@ public class Card extends javax.swing.JFrame {
         BufferedReader BR = null;
         try {
             //Get file by path file;
-            File a = new File("E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Data.txt");
+            File a = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Data.txt");
             List<String> TempFile = new ArrayList<>();
             BR = new BufferedReader(new FileReader(a));
             String line=null;
@@ -183,8 +183,18 @@ public class Card extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+//<<<<<<< Updated upstream
     
     
+//=======
+    //gan du lieu hinh
+    public String[] getImage()
+    {
+        File file = new File(getClass().getResource("").getFile());
+        String[] imagesList = file.list();
+        return imagesList;
+    }
+//>>>>>>> Stashed changes
     
     public void showImage(int index)
     {
@@ -418,7 +428,12 @@ public class Card extends javax.swing.JFrame {
              x++;
         }
         }
-     JOptionPane.showMessageDialog(this, "Kết quả: " + x + "/10");
+        JOptionPane.showMessageDialog(this, "Kết quả: " + x + "/10");
+        if (x == 2){
+            this.setVisible(false);
+            new Round2().setVisible(true);
+            
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
