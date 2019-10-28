@@ -145,24 +145,27 @@ public class Round2 extends javax.swing.JFrame {
     public int countFull = 0;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        countFull++;
-        File file1 = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataFullRound2.txt");
-        Scanner sc1 = null;
-        try {
-            sc1 = new Scanner(file1);
-            for (int i = 0 ; i < countFull; i++){
-                if (i<countFull){
-                    sc1.hasNextLine();
-                    txtPhase_Round2.setText(sc1.nextLine());
+        if (countFull < countSpace - countFull){
+            countFull++;
+            File file1 = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataFullRound2.txt");
+            Scanner sc1 = null;
+            try {
+                sc1 = new Scanner(file1);
+                for (int i = 0 ; i < countFull; i++){
+                    if (i<countFull){
+                        sc1.hasNextLine();
+                        txtPhase_Round2.setText(sc1.nextLine());
+                    }
+                    else{
+                        sc1.hasNextLine();
+                        sc1.nextLine();
+                    }
                 }
-                else{
-                    sc1.hasNextLine();
-                    sc1.nextLine();
-                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Round2.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Round2.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
     private void init(){
