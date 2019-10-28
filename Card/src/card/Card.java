@@ -30,16 +30,16 @@ import javax.swing.JTextField;
 public class Card extends javax.swing.JFrame {
 
     protected List<String> _ListUrlImage=Arrays.asList(
-            "C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Cry.PNG",
-            "C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dance.PNG",
-            "C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dive.PNG",
-            "C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Draw.PNG",
-            "C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fish.PNG",
-            "C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fly.PNG",
-            "C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Hug.PNG",
-            "C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Jump.PNG",
-            "C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Open.PNG",
-            "C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Play.PNG"
+            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Cry.PNG",
+            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dance.PNG",
+            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dive.PNG",
+            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Draw.PNG",
+            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fish.PNG",
+            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fly.PNG",
+            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Hug.PNG",
+            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Jump.PNG",
+            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Open.PNG",
+            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Play.PNG"
     );
     
     protected HashMap<String,String> _ImageToResult = new HashMap<String,String>();
@@ -53,6 +53,8 @@ public class Card extends javax.swing.JFrame {
     
     //Chữ -> cách phát âm (made by gg translate)
     protected HashMap<String,String> _ResultToPronounce = new HashMap<String,String>();
+    
+    static int x;
     
     public Card() {
         initComponents();
@@ -73,7 +75,7 @@ public class Card extends javax.swing.JFrame {
         BufferedReader BR = null;
         try {
             //Get file by path file;
-            File a = new File("C:\\Users\\Phi Ngo\\Desktop\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Data.txt");
+            File a = new File("E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Data.txt");
             List<String> TempFile = new ArrayList<>();
             BR = new BufferedReader(new FileReader(a));
             String line=null;
@@ -186,6 +188,9 @@ public class Card extends javax.swing.JFrame {
     
     public void showImage(int index)
     {
+        jButton1.setVisible(false);
+        jButton2.setVisible(false);
+        jButton3.setVisible(false);
         ImageIcon icon = new ImageIcon(_ListUrlImage.get(index));
         Image image = icon.getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_DEFAULT);
         jLabel1.setIcon(new ImageIcon(image));
@@ -239,6 +244,7 @@ public class Card extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -290,7 +296,7 @@ public class Card extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("jRadioButton2");
 
-        jButton1.setText("Tiếp Theo");
+        jButton1.setText("Đáp án");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -308,6 +314,13 @@ public class Card extends javax.swing.JFrame {
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Tiếp Theo");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -332,8 +345,10 @@ public class Card extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
-                        .addComponent(jToggleButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jToggleButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,7 +367,8 @@ public class Card extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                            .addComponent(jToggleButton1))))
+                            .addComponent(jToggleButton1)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -376,12 +392,15 @@ public class Card extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        
+        jButton1.setVisible(true);
+        jButton2.setVisible(true);
+        jButton3.setVisible(true);
         String text = txtWords.getText();
         String text1 = jRadioButton1.getText();
         String text2 = jRadioButton2.getText();
-        int x = 0;
+        //int x = 0;
         int y = 0 ;
-        int index = 0;
         if(jRadioButton1.isSelected()){
         if(!text.equals(text1)){
             // biến này để xử lý text không rỗng
@@ -400,9 +419,15 @@ public class Card extends javax.swing.JFrame {
         }
         }
      JOptionPane.showMessageDialog(this, "Kết quả: " + x + "/10");
-     showImage(index);
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int index = new Random().nextInt()%_Result.size();
+        
+        showImage(index);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -443,6 +468,7 @@ public class Card extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
