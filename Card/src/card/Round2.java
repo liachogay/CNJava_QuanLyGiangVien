@@ -10,6 +10,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +26,8 @@ public class Round2 extends javax.swing.JFrame {
         initComponents();
         init();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,6 +38,7 @@ public class Round2 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         txtPhase_Round2 = new javax.swing.JTextField();
         jRad1_round2 = new javax.swing.JRadioButton();
         jRad2_round2 = new javax.swing.JRadioButton();
@@ -64,6 +69,11 @@ public class Round2 extends javax.swing.JFrame {
         });
 
         jButton3.setText("Kết quả");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,34 +150,119 @@ public class Round2 extends javax.swing.JFrame {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Round2.class.getName()).log(Level.SEVERE, null, ex);
         }
+        jButton1.setEnabled(true);
     }//GEN-LAST:event_jButton2ActionPerformed
     
     public int countFull = 0;
+    
+    //Kết quả 
+    int x = 0;
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (countFull < countSpace - countFull){
-            countFull++;
-            File file1 = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataFullRound2.txt");
-            Scanner sc1 = null;
+        if (jRad1_round2.isSelected()){
+            //lấy  dữ  liệu  đúng  để  so  sánh
+            File file = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataSpaceRound2.txt");
+            Scanner sc = null;
             try {
-                sc1 = new Scanner(file1);
-                for (int i = 0 ; i < countFull; i++){
-                    if (i<countFull){
-                        sc1.hasNextLine();
-                        txtPhase_Round2.setText(sc1.nextLine());
-                    }
-                    else{
-                        sc1.hasNextLine();
-                        sc1.nextLine();
-                    }
+                sc = new Scanner(file);
+                for (int i = 0 ; i < countSpace; i++){
+                        if (i<countSpace){
+                            sc.hasNextLine();
+                            if (jRad1_round2.getText().equals(sc.nextLine())){
+                                JOptionPane.showMessageDialog(null, "Bạn đã trả lời đúng!!!");
+                                x+=1;
+                                break;
+                            }
+                            else{
+                                JOptionPane.showMessageDialog(null, "Bạn đã trả lời sai!!!");
+                            }
+                        }
+                        else{
+                            sc.hasNextLine();
+                            sc.nextLine();
+                        }
                 }
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Round2.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            if (countFull < countSpace - countFull){
+                countFull++;
+                File file1 = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataFullRound2.txt");
+                Scanner sc1 = null;
+                try {
+                    sc1 = new Scanner(file1);
+                    for (int i = 0 ; i < countFull; i++){
+                        if (i<countFull){
+                            sc1.hasNextLine();
+                            txtPhase_Round2.setText(sc1.nextLine());
+                        }
+                        else{
+                            sc1.hasNextLine();
+                            sc1.nextLine();
+                        }
+                    }
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Round2.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
-        
-        
+        else if (jRad2_round2.isSelected()){
+            //lấy  dữ  liệu  đúng  để  so  sánh
+            File file = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataSpaceRound2.txt");
+            Scanner sc = null;
+            try {
+                sc = new Scanner(file);
+                for (int i = 0 ; i < countSpace; i++){
+                        if (i<countSpace){
+                            sc.hasNextLine();
+                            if (jRad2_round2.getText().equals(sc.nextLine())){
+                                JOptionPane.showMessageDialog(null, "Bạn đã trả lời đúng!!!");
+                                x+=1;
+                                break;
+                            }
+                            else{
+                                JOptionPane.showMessageDialog(null, "Bạn đã trả lời sai!!!");
+                            }
+                        }
+                        else{
+                            sc.hasNextLine();
+                            sc.nextLine();
+                        }
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Round2.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            if (countFull < countSpace - countFull){
+                countFull++;
+                File file1 = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataFullRound2.txt");
+                Scanner sc1 = null;
+                try {
+                    sc1 = new Scanner(file1);
+                    for (int i = 0 ; i < countFull; i++){
+                        if (i<countFull){
+                            sc1.hasNextLine();
+                            txtPhase_Round2.setText(sc1.nextLine());
+                        }
+                        else{
+                            sc1.hasNextLine();
+                            sc1.nextLine();
+                        }
+                    }
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Round2.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        jButton1.setEnabled(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Kết quả " + x + "/10");
+    }//GEN-LAST:event_jButton3ActionPerformed
     private void init(){
         File file = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataSpaceRound2.txt"); 
                 Scanner sc = null; 
@@ -176,6 +271,9 @@ public class Round2 extends javax.swing.JFrame {
                     sc.hasNextLine();
                     jRad1_round2.setText(sc.nextLine());
                     txtPhase_Round2.setText(sc.nextLine());
+                    ButtonGroup bg = new ButtonGroup();
+                    bg.add(jRad1_round2);
+                    bg.add(jRad2_round2);
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(Round2.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -217,6 +315,7 @@ public class Round2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
