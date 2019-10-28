@@ -7,6 +7,7 @@ package card;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -128,6 +129,11 @@ public class Round2 extends javax.swing.JFrame {
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        Random r = new Random();
+        while(r.nextInt(10) % 2 != 0){
+            int rand = r.nextInt(10);
+        }
+        
         countSpace+=2;
         File file1 = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataSpaceRound2.txt");
         Scanner sc1 = null;
@@ -167,15 +173,17 @@ public class Round2 extends javax.swing.JFrame {
             try {
                 sc = new Scanner(file);
                 for (int i = 0 ; i < countSpace; i++){
-                        if (i<countSpace){
+                        if (i == countSpace - 2){
                             sc.hasNextLine();
+                            
                             if (jRad1_round2.getText().equals(sc.nextLine())){
                                 JOptionPane.showMessageDialog(null, "Bạn đã trả lời đúng!!!");
                                 x+=1;
                                 break;
                             }
-                            else{
+                            else if (!jRad1_round2.getText().equals(sc.nextLine())){
                                 JOptionPane.showMessageDialog(null, "Bạn đã trả lời sai!!!");
+                                break;
                             }
                         }
                         else{
@@ -215,15 +223,16 @@ public class Round2 extends javax.swing.JFrame {
             try {
                 sc = new Scanner(file);
                 for (int i = 0 ; i < countSpace; i++){
-                        if (i<countSpace){
+                        if (i == countSpace - 2){
                             sc.hasNextLine();
                             if (jRad2_round2.getText().equals(sc.nextLine())){
                                 JOptionPane.showMessageDialog(null, "Bạn đã trả lời đúng!!!");
                                 x+=1;
                                 break;
                             }
-                            else{
+                            else if (!jRad2_round2.getText().equals(sc.nextLine())){
                                 JOptionPane.showMessageDialog(null, "Bạn đã trả lời sai!!!");
+                                break;
                             }
                         }
                         else{
@@ -271,6 +280,7 @@ public class Round2 extends javax.swing.JFrame {
                     sc.hasNextLine();
                     jRad1_round2.setText(sc.nextLine());
                     txtPhase_Round2.setText(sc.nextLine());
+                    jRad2_round2.setText(sc.nextLine());
                     ButtonGroup bg = new ButtonGroup();
                     bg.add(jRad1_round2);
                     bg.add(jRad2_round2);
