@@ -152,14 +152,20 @@ public class Card extends javax.swing.JFrame {
     
     //Tiếng anh như cái ...
     private void _ShowOptionChooseRoundOne(int index){
+        if (index < 0 ){
+            index = -index;
+        }
         Random ran = new Random();
         int Size = DataManager.Instance().GetSize();
         int[] Appear = new int[2];
         int temp = ran.nextInt()%2;
         int rand = ran.nextInt()%Size;
+        temp = Math.abs(temp);
+        rand = Math.abs(rand);
         if (temp == 0){
             while (rand == index){
                 rand = ran.nextInt()%Size;
+                rand = Math.abs(rand);
                 Appear[0] = rand;
             }
             Appear[1] = index;
@@ -167,6 +173,7 @@ public class Card extends javax.swing.JFrame {
             Appear[0] = index;
             while (rand == index){
                 rand = ran.nextInt()%Size;
+                rand = Math.abs(rand);
                 Appear[1] = rand;
             }
         }
@@ -378,7 +385,7 @@ public class Card extends javax.swing.JFrame {
         if (x == 4){
             this.setVisible(false);
             JframeRound2.setVisible(true);
-            
+            JframeRound2.OnlyCallOneTime();
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed

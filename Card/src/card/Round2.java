@@ -21,6 +21,9 @@ import java.util.ArrayList;
  * @author Phi Ngo
  */
 public class Round2 extends javax.swing.JFrame {
+    
+    private static boolean Called = false;
+    private List<Integer> _ListIndexGot = new ArrayList<>();
 
     /**
      * Creates new form Round2
@@ -29,9 +32,13 @@ public class Round2 extends javax.swing.JFrame {
         initComponents();
     }
     
+    public void OnlyCallOneTime(){
+        if (Called == false){
+            _ListIndexGot.addAll(DataManager.Instance().GetListIndexGot());
+            _LoadNextSentence();
+        }
+    }
     
-    private List<Integer> _ListIndexGot = new ArrayList<>(DataManager.Instance().GetListIndexGot());
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,6 +61,18 @@ public class Round2 extends javax.swing.JFrame {
         txtPhase_Round2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPhase_Round2ActionPerformed(evt);
+            }
+        });
+
+        jRad1_round2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRad1_round2ActionPerformed(evt);
+            }
+        });
+
+        jRad2_round2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRad2_round2ActionPerformed(evt);
             }
         });
 
@@ -131,31 +150,10 @@ public class Round2 extends javax.swing.JFrame {
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
-        
-        countSpace+=2;
-        File file1 = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataSpaceRound2.txt");
-        Scanner sc1 = null;
-        try {
-            sc1 = new Scanner(file1);
-            for (int i = 1 ; i <= countSpace; i++){
-                if (i < countSpace){
-                    sc1.hasNextLine();
-                    jRad1_round2.setText(sc1.nextLine());
-                }
-                else if (i == countSpace){
-                    sc1.hasNextLine();
-                    txtPhase_Round2.setText(sc1.nextLine());
-                }
-                else{
-                    sc1.hasNextLine();
-                    sc1.nextLine();
-                }
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Round2.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        jButton1.setEnabled(true);
+        _LoadNextSentence();
+        jRad1_round2.setSelected(false);
+        jRad2_round2.setSelected(false);
+        jButton1.enable(true);
     }//GEN-LAST:event_jButton2ActionPerformed
     
     public int countFull = 0;
@@ -190,10 +188,42 @@ public class Round2 extends javax.swing.JFrame {
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "Kết quả " + x + "/10");
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jRad1_round2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRad1_round2ActionPerformed
+        // TODO add your handling code here:
+        jRad2_round2.setSelected(false);
+    }//GEN-LAST:event_jRad1_round2ActionPerformed
+
+    private void jRad2_round2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRad2_round2ActionPerformed
+        // TODO add your handling code here:
+        jRad1_round2.setSelected(false);
+    }//GEN-LAST:event_jRad2_round2ActionPerformed
     
-    /**
-     * @param args the command line arguments
-     */
+    private void _LoadNextSentence(){
+        Random Rand = new Random();
+        int[] Appear = new int[2];
+        int Temp = Math.abs(Rand.nextInt())%2;
+        int IndexAnother = Math.abs((Rand.nextInt())%DataManager.Instance().GetSize());
+        if (Temp == 0){
+            Appear[0]= _ListIndexGot.get(count);
+            while(IndexAnother == Appear[0]){
+                IndexAnother = Math.abs((Rand.nextInt())%DataManager.Instance().GetSize());
+            }
+            Appear[1] = IndexAnother;
+        }else{
+            Appear[1]= _ListIndexGot.get(count); 
+            while(IndexAnother == Appear[1]){
+                IndexAnother = Math.abs((Rand.nextInt())%DataManager.Instance().GetSize());
+            }
+            Appear[0] = IndexAnother;
+        }
+        jRad1_round2.setText(DataManager.Instance().GetPronounceByIndexRound2(Appear[0]));
+        jRad2_round2.setText(DataManager.Instance().GetPronounceByIndexRound2(Appear[1]));
+        txtPhase_Round2.setText(DataManager.Instance().GetHiddenSentenceByPronounce(
+            DataManager.Instance().GetPronounceByIndexRound2(_ListIndexGot.get(count))));
+        count++;
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
