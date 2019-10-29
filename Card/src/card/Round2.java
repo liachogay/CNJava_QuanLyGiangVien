@@ -29,6 +29,7 @@ public class Round2 extends javax.swing.JFrame {
     }
     
     
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -129,10 +130,7 @@ public class Round2 extends javax.swing.JFrame {
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Random r = new Random();
-        while(r.nextInt(10) % 2 != 0){
-            int rand = r.nextInt(10);
-        }
+        
         
         countSpace+=2;
         File file1 = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataSpaceRound2.txt");

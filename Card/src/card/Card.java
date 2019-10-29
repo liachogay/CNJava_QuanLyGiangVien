@@ -29,37 +29,17 @@ import javax.swing.JTextField;
  */
 public class Card extends javax.swing.JFrame {
 
-    protected List<String> _ListUrlImage=Arrays.asList(
-            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Cry.PNG",
-            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Dance.PNG",
-            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Dive.PNG",
-            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Draw.PNG",
-            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Fish.PNG",
-            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Fly.PNG",
-            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Hug.PNG",
-            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Jump.PNG",
-            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Open.PNG",
-            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Play.PNG"
-    );
-    
-    protected HashMap<String,String> _ImageToResult = new HashMap<String,String>();
-    
-    
-    //Chữ để mapping
-    protected List<String> _Result = new ArrayList<>();
-    
-    //Chữ -> câu (made by gg translade)
-    protected HashMap<String,String> _ResultToSentence = new HashMap<String,String>();
-    
-    //Chữ -> cách phát âm (made by gg translate)
-    protected HashMap<String,String> _ResultToPronounce = new HashMap<String,String>();
+    Round2 JframeRound2 = new Round2();
     
     static int x;
     
+    int IndexUsing = -1;
+    
     public Card() {
         initComponents();
-        _LoadDataDefault();
-        showImage(Math.abs((new Random().nextInt())%_Result.size()));
+        IndexUsing = Math.abs((new Random().nextInt())%DataManager.Instance().GetSize());        
+        DataManager.Instance().AddListIndexGot(IndexUsing);
+        showImage(IndexUsing);
         jPanel2.hide();
 //<<<<<<< Updated upstream
         jPanel2.show(false);
@@ -69,45 +49,6 @@ public class Card extends javax.swing.JFrame {
         
 /*=======
 >>>>>>> Stashed changes*/
-    }
-    
-    private void _LoadDataDefault(){
-        BufferedReader BR = null;
-        try {
-            //Get file by path file;
-            File a = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Data.txt");
-            List<String> TempFile = new ArrayList<>();
-            BR = new BufferedReader(new FileReader(a));
-            String line=null;
-            try {
-                while((line = BR.readLine()) != null){
-                    TempFile.add(line);
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-//            for(int i=0;i<TempFile.size();i++){
-//                System.out.println(i+ " " + TempFile.get(i));
-//            }
-            for(int i=0;i<TempFile.size()-3;i+=3){
-                _ImageToResult.put(_ListUrlImage.get(i/3), TempFile.get(i));
-                _Result.add(TempFile.get(i));
-                _ResultToPronounce.put(TempFile.get(i), TempFile.get(i+1));
-                _ResultToSentence.put(TempFile.get(i),TempFile.get(i+2));
-            }   
-//            for(int i=0;i<_ResultToSentence.size();i++){
-//                System.out.println(_Result.get(i) + " " + _ResultToPronounce.get(_Result.get(i))
-//                        +  " " + _ResultToSentence.get(_Result.get(i)));
-//            }
-        } catch (FileNotFoundException ex) {
-                ex.printStackTrace();
-        } finally {
-            try {
-                BR.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
     }
     
     /**
@@ -201,7 +142,7 @@ public class Card extends javax.swing.JFrame {
         jButton1.setVisible(false);
         jButton2.setVisible(false);
         jButton3.setVisible(false);
-        ImageIcon icon = new ImageIcon(_ListUrlImage.get(index));
+        ImageIcon icon = new ImageIcon(DataManager.Instance().GetUrlImage(index));
         Image image = icon.getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_DEFAULT);
         jLabel1.setIcon(new ImageIcon(image));
         jLabel1.setText("");
@@ -212,30 +153,32 @@ public class Card extends javax.swing.JFrame {
     //Tiếng anh như cái ...
     private void _ShowOptionChooseRoundOne(int index){
         Random ran = new Random();
+        int Size = DataManager.Instance().GetSize();
         int[] Appear = new int[2];
         int temp = ran.nextInt()%2;
-        int rand = ran.nextInt()%_Result.size();
+        int rand = ran.nextInt()%Size;
         if (temp == 0){
             while (rand == index){
-                rand = ran.nextInt()%_Result.size();
+                rand = ran.nextInt()%Size;
                 Appear[0] = rand;
             }
             Appear[1] = index;
         }else{
             Appear[0] = index;
             while (rand == index){
-                rand = ran.nextInt()%_Result.size();
+                rand = ran.nextInt()%Size;
                 Appear[1] = rand;
             }
         }
-        jRadioButton1.setText(_Result.get(Appear[0]));
-        jRadioButton2.setText(_Result.get(Appear[1]));
+        jRadioButton1.setText(DataManager.Instance().GetResult(Appear[0]));
+        jRadioButton2.setText(DataManager.Instance().GetResult(Appear[1]));
     }
 
     private void _UploadDataToTextField(int index){
-        txtWords.setText(_Result.get(index));
-        txtSpell.setText(_ResultToPronounce.get(_Result.get(index)));
-        txtPhases.setText(_ResultToSentence.get(_Result.get(index)));
+        String str = DataManager.Instance().GetResult(index);
+        txtWords.setText(str);
+        txtSpell.setText(DataManager.Instance().GetPronounceByResult(str));
+        txtPhases.setText(DataManager.Instance().GetSentenceByResult(str));
     }
     
     @SuppressWarnings("unchecked")
@@ -429,9 +372,9 @@ public class Card extends javax.swing.JFrame {
         }
         }
         JOptionPane.showMessageDialog(this, "Kết quả: " + x + "/10");
-        if (x == 2){
+        if (x == 4){
             this.setVisible(false);
-            new Round2().setVisible(true);
+            JframeRound2.setVisible(true);
             
         }
         // TODO add your handling code here:
@@ -439,9 +382,10 @@ public class Card extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        int index = new Random().nextInt()%_Result.size();
-        
-        showImage(index);
+        int index = new Random().nextInt()%DataManager.Instance().GetSize();
+        IndexUsing = index;
+        DataManager.Instance().AddListIndexGot(IndexUsing);
+        showImage(Math.abs((index)));
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
