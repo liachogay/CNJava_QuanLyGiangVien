@@ -48,6 +48,7 @@ public class DataManager {
     
     public DataManager(){
         _InitializeRound1();
+        _InitializeRound2();
     }
     
     private HashMap<String,String> _ImageToResult = new HashMap<String,String>();
@@ -62,6 +63,8 @@ public class DataManager {
     private HashMap<String,String> _ResultToPronounce = new HashMap<String,String>();
     
     private List<Integer> _ListIndexGot = new ArrayList<>();
+    
+    private List<String> _ListPronounceRound2 = new ArrayList<>();
     
     //Cách phát âm -> câu ẩn
     private HashMap<String,String> _PronounceToHiddenSentence = new HashMap<String,String>();
@@ -118,7 +121,10 @@ public class DataManager {
                 String HiddenSentence = null;
                 while(sc.hasNextLine()){
                     Pronounce = sc.nextLine();
-                    HiddenSentence = sc.nextLine();
+                    if (sc.hasNextLine()){
+                        HiddenSentence = sc.nextLine();
+                    }
+                    _ListPronounceRound2.add(Pronounce);
                     _PronounceToHiddenSentence.put(Pronounce, HiddenSentence);
                     _HiddenSentenceToPronounce.put(HiddenSentence, Pronounce);
                 }
@@ -140,6 +146,9 @@ public class DataManager {
     }
     
     public String GetResult(int index){
+        if (index < 0){
+            index = -index;
+        }
         return _Result.get(index);
     }
     
@@ -160,10 +169,16 @@ public class DataManager {
     }
     
     public void AddListIndexGot(int index){
+        if (index < 0){
+            index = -index;
+        }
         _ListIndexGot.add(index);
     }
     
     public int GetItemInListIndexGot(int index){
+        if (index < 0){
+            index = -index;
+        }
         return _ListIndexGot.get(index);
     }
     
@@ -173,5 +188,9 @@ public class DataManager {
     
     public String GetPronounceToHiddenSentence(String HiddenSentence){
         return _HiddenSentenceToPronounce.get(HiddenSentence);
+    }
+    
+    public String GetPronounceByIndexRound2(int index){
+        return _ListPronounceRound2.get(index);
     }
 }

@@ -13,6 +13,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,11 +27,10 @@ public class Round2 extends javax.swing.JFrame {
      */
     public Round2() {
         initComponents();
-        init();
     }
     
     
-    
+    private List<Integer> _ListIndexGot = new ArrayList<>(DataManager.Instance().GetListIndexGot());
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -126,7 +127,7 @@ public class Round2 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPhase_Round2ActionPerformed
     
-    public int countSpace = 2;
+    public int count = 0;
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -165,102 +166,21 @@ public class Round2 extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if (jRad1_round2.isSelected()){
-            //lấy  dữ  liệu  đúng  để  so  sánh
-            File file = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataSpaceRound2.txt");
-            Scanner sc = null;
-            try {
-                sc = new Scanner(file);
-                for (int i = 0 ; i < countSpace; i++){
-                        if (i == countSpace - 2){
-                            sc.hasNextLine();
-                            
-                            if (jRad1_round2.getText().equals(sc.nextLine())){
-                                JOptionPane.showMessageDialog(null, "Bạn đã trả lời đúng!!!");
-                                x+=1;
-                                break;
-                            }
-                            else if (!jRad1_round2.getText().equals(sc.nextLine())){
-                                JOptionPane.showMessageDialog(null, "Bạn đã trả lời sai!!!");
-                                break;
-                            }
-                        }
-                        else{
-                            sc.hasNextLine();
-                            sc.nextLine();
-                        }
-                }
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Round2.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            if (countFull < countSpace - countFull){
-                countFull++;
-                File file1 = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataFullRound2.txt");
-                Scanner sc1 = null;
-                try {
-                    sc1 = new Scanner(file1);
-                    for (int i = 0 ; i < countFull; i++){
-                        if (i<countFull){
-                            sc1.hasNextLine();
-                            txtPhase_Round2.setText(sc1.nextLine());
-                        }
-                        else{
-                            sc1.hasNextLine();
-                            sc1.nextLine();
-                        }
-                    }
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(Round2.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            String Answer =  jRad1_round2.getText();
+            if (DataManager.Instance().GetHiddenSentenceByPronounce(Answer).equals(txtPhase_Round2.getText())){
+                JOptionPane.showMessageDialog(null, "Bạn đã trả lời đúng!!!");
+                x+=1;
+            }else{
+                JOptionPane.showMessageDialog(null, "Bạn đã trả lời sai!!!");
             }
         }
         else if (jRad2_round2.isSelected()){
-            //lấy  dữ  liệu  đúng  để  so  sánh
-            File file = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataSpaceRound2.txt");
-            Scanner sc = null;
-            try {
-                sc = new Scanner(file);
-                for (int i = 0 ; i < countSpace; i++){
-                        if (i == countSpace - 2){
-                            sc.hasNextLine();
-                            if (jRad2_round2.getText().equals(sc.nextLine())){
-                                JOptionPane.showMessageDialog(null, "Bạn đã trả lời đúng!!!");
-                                x+=1;
-                                break;
-                            }
-                            else if (!jRad2_round2.getText().equals(sc.nextLine())){
-                                JOptionPane.showMessageDialog(null, "Bạn đã trả lời sai!!!");
-                                break;
-                            }
-                        }
-                        else{
-                            sc.hasNextLine();
-                            sc.nextLine();
-                        }
-                }
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Round2.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            if (countFull < countSpace - countFull){
-                countFull++;
-                File file1 = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataFullRound2.txt");
-                Scanner sc1 = null;
-                try {
-                    sc1 = new Scanner(file1);
-                    for (int i = 0 ; i < countFull; i++){
-                        if (i<countFull){
-                            sc1.hasNextLine();
-                            txtPhase_Round2.setText(sc1.nextLine());
-                        }
-                        else{
-                            sc1.hasNextLine();
-                            sc1.nextLine();
-                        }
-                    }
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(Round2.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            String Answer =  jRad2_round2.getText();
+            if (DataManager.Instance().GetHiddenSentenceByPronounce(Answer).equals(txtPhase_Round2.getText())){
+                JOptionPane.showMessageDialog(null, "Bạn đã trả lời đúng!!!");
+                x+=1;
+            }else{
+                JOptionPane.showMessageDialog(null, "Bạn đã trả lời sai!!!");
             }
         }
         jButton1.setEnabled(false);
@@ -270,22 +190,7 @@ public class Round2 extends javax.swing.JFrame {
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "Kết quả " + x + "/10");
     }//GEN-LAST:event_jButton3ActionPerformed
-    private void init(){
-        File file = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataSpaceRound2.txt"); 
-                Scanner sc = null; 
-                try {
-                    sc = new Scanner(file);
-                    sc.hasNextLine();
-                    jRad1_round2.setText(sc.nextLine());
-                    txtPhase_Round2.setText(sc.nextLine());
-                    jRad2_round2.setText(sc.nextLine());
-                    ButtonGroup bg = new ButtonGroup();
-                    bg.add(jRad1_round2);
-                    bg.add(jRad2_round2);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(Round2.class.getName()).log(Level.SEVERE, null, ex);
-                }
-    }
+    
     /**
      * @param args the command line arguments
      */

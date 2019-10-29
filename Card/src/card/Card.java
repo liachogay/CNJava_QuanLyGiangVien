@@ -39,7 +39,7 @@ public class Card extends javax.swing.JFrame {
         initComponents();
         IndexUsing = Math.abs((new Random().nextInt())%DataManager.Instance().GetSize());        
         DataManager.Instance().AddListIndexGot(IndexUsing);
-        showImage(IndexUsing);
+        showImage(Math.abs(IndexUsing));
         jPanel2.hide();
 //<<<<<<< Updated upstream
         jPanel2.show(false);
@@ -329,14 +329,17 @@ public class Card extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                if(jRadioButton1.isSelected()){
+//                if(jRadioButton1.isSelected()){
+//                    jPanel1.setVisible(false);
+//                    jPanel2.setVisible(true);
+//                }
+//                else if(jRadioButton2.isSelected()){
+//                    jPanel1.setVisible(false);
+//                    jPanel2.setVisible(true);
+//                }
+                
                     jPanel1.setVisible(false);
                     jPanel2.setVisible(true);
-                }
-                else if(jRadioButton2.isSelected()){
-                    jPanel1.setVisible(false);
-                    jPanel2.setVisible(true);
-                }
     }//GEN-LAST:event_jButton1ActionPerformed
 //Load file text
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -382,9 +385,14 @@ public class Card extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        int index = new Random().nextInt()%DataManager.Instance().GetSize();
+        int index = Math.abs(new Random().nextInt()%DataManager.Instance().GetSize());
         IndexUsing = index;
         DataManager.Instance().AddListIndexGot(IndexUsing);
+        jPanel1.setVisible(true);
+        jPanel2.setVisible(false);
+        jRadioButton1.setSelected(false);
+        jRadioButton2.setSelected(false);
+        jToggleButton1.setSelected(false);
         showImage(Math.abs((index)));
     }//GEN-LAST:event_jButton3ActionPerformed
 
