@@ -30,6 +30,9 @@ public class Round2 extends javax.swing.JFrame {
      */
     public Round2() {
         initComponents();
+        jButton2.setVisible(false);
+        jButton3.setVisible(false);
+    
     }
     
     public void OnlyCallOneTime(){
@@ -153,21 +156,25 @@ public class Round2 extends javax.swing.JFrame {
         _LoadNextSentence();
         jRad1_round2.setSelected(false);
         jRad2_round2.setSelected(false);
-        jButton1.enable(true);
+        jButton1.setEnabled(true);
+        jButton2.setVisible(false);
+        jButton3.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
     
     public int countFull = 0;
     
     //Kết quả 
-    int x = 0;
+    static int z = 0;
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        jButton2.setVisible(true);
+        jButton3.setVisible(true);
         if (jRad1_round2.isSelected()){
             String Answer =  jRad1_round2.getText();
             if (DataManager.Instance().GetHiddenSentenceByPronounce(Answer).equals(txtPhase_Round2.getText())){
                 JOptionPane.showMessageDialog(null, "Bạn đã trả lời đúng!!!");
-                x+=1;
+                z+=1;
             }else{
                 JOptionPane.showMessageDialog(null, "Bạn đã trả lời sai!!!");
             }
@@ -176,7 +183,7 @@ public class Round2 extends javax.swing.JFrame {
             String Answer =  jRad2_round2.getText();
             if (DataManager.Instance().GetHiddenSentenceByPronounce(Answer).equals(txtPhase_Round2.getText())){
                 JOptionPane.showMessageDialog(null, "Bạn đã trả lời đúng!!!");
-                x+=1;
+                z+=1;
             }else{
                 JOptionPane.showMessageDialog(null, "Bạn đã trả lời sai!!!");
             }
@@ -186,7 +193,7 @@ public class Round2 extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Kết quả " + x + "/10");
+        JOptionPane.showMessageDialog(null, "Kết quả " + z + "/10");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jRad1_round2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRad1_round2ActionPerformed
