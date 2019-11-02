@@ -435,13 +435,13 @@ public class Round3 extends javax.swing.JFrame {
                 break;
             case 1:
                 if (DataManager.Instance().
-                        GetSentenceAdj(jTextField2.getText()).equals(jTextField4.getText())){
+                        GetSentenceNoun(jTextField2.getText()).equals(jTextField4.getText())){
                     ReturnBack=true;
                 }
                 break;
             case 2:
                 if (DataManager.Instance().
-                        GetSentenceAdj(jTextField3.getText()).equals(jTextField4.getText())){
+                        GetSentenceVerb(jTextField3.getText()).equals(jTextField4.getText())){
                     ReturnBack=true;
                 }
                 break;
@@ -455,7 +455,7 @@ public class Round3 extends javax.swing.JFrame {
         switch (AnswerSentence2){
             case 0:
                 if (DataManager.Instance().
-                        GetSentenceNoun(jTextField1.getText()).equals(jTextField5.getText())){
+                        GetSentenceAdj(jTextField1.getText()).equals(jTextField5.getText())){
                     ReturnBack=true;
                 }
                 break;
@@ -467,7 +467,7 @@ public class Round3 extends javax.swing.JFrame {
                 break;
             case 2:
                 if (DataManager.Instance().
-                        GetSentenceNoun(jTextField3.getText()).equals(jTextField5.getText())){
+                        GetSentenceVerb(jTextField3.getText()).equals(jTextField5.getText())){
                     ReturnBack=true;
                 }
                 break;
@@ -481,13 +481,13 @@ public class Round3 extends javax.swing.JFrame {
         switch (AnswerSentence3){
             case 0:
                 if (DataManager.Instance().
-                        GetSentenceVerb(jTextField1.getText()).equals(jTextField6.getText())){
+                        GetSentenceAdj(jTextField1.getText()).equals(jTextField6.getText())){
                     ReturnBack=true;
                 }
                 break;
             case 1:
                 if (DataManager.Instance().
-                        GetSentenceVerb(jTextField2.getText()).equals(jTextField6.getText())){
+                        GetSentenceNoun(jTextField2.getText()).equals(jTextField6.getText())){
                     ReturnBack=true;
                 }
                 break;
