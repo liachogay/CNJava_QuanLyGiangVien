@@ -132,7 +132,7 @@ public class Login extends javax.swing.JFrame {
                 if (dem != 0){
                     this.setVisible(false);
                     card.setVisible(true);
-                    DataManager.Instance().setScore(50);
+                    DataManager.Instance().setScore(progress);
                     card.UpdateScore();
                     System.out.println(progress);
                     
