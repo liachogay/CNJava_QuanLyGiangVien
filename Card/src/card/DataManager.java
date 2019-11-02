@@ -98,6 +98,8 @@ public class DataManager {
     private HashMap<String,String> _HiddenSentenceToPronounce = new HashMap<String,String>(); 
     
     
+    private int _Score  = 0;
+    
     private void _InitializeRound1(){
         BufferedReader BR = null;
         try {
@@ -239,11 +241,10 @@ public class DataManager {
     public String GetPronounceByIndexRound2(int index){
         return _ListPronounceRound2.get(index);
     }
-    public int score  = 0;
     public void setScore(int score){
-        this.score = score;
+        this._Score = score;
     }
     public int getScore(){
-        return this.score;
+        return this._Score;
     }
 }

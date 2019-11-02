@@ -35,10 +35,15 @@ public class Card extends javax.swing.JFrame {
     
     int IndexUsing = -1;
     
+    private HashMap<Integer,Boolean> Randomed = new HashMap<Integer,Boolean>();
+    
     public Card() {
         initComponents();
-        IndexUsing = Math.abs((new Random().nextInt())%DataManager.Instance().GetSize());        
+        while(IndexUsing == -1 || Randomed.containsKey(IndexUsing)){
+            IndexUsing = Math.abs((new Random().nextInt())%DataManager.Instance().GetSize());      
+        }  
         DataManager.Instance().AddListIndexGot(IndexUsing);
+        Randomed.put(IndexUsing, true);
         showImage(Math.abs(IndexUsing));
         jPanel2.hide();
 //<<<<<<< Updated upstream
@@ -47,9 +52,6 @@ public class Card extends javax.swing.JFrame {
 //            System.out.print(i + " " + _ImageToResult.get(i)+'\n');
 //        }
         
-        /*Progress Bar*/
-        jProgressLabel.setText("Your progress: " + DataManager.Instance().getScore() + "%");
-        jBar.setValue(DataManager.Instance().getScore());
 /*=======
 >>>>>>> Stashed changes*/
     }
@@ -386,8 +388,15 @@ public class Card extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         int index = Math.abs(new Random().nextInt()%DataManager.Instance().GetSize());
+        
+        while(index == -1 || Randomed.containsKey(index)){
+            index = Math.abs((new Random().nextInt())%DataManager.Instance().GetSize());      
+        }  
         IndexUsing = index;
+        
         DataManager.Instance().AddListIndexGot(IndexUsing);
+        Randomed.put(IndexUsing, true);
+        
         jPanel1.setVisible(true);
         jPanel2.setVisible(false);
         jRadioButton1.setSelected(false);
@@ -447,6 +456,12 @@ public class Card extends javax.swing.JFrame {
                 // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    public void UpdateScore(){
+        /*Progress Bar*/
+        jProgressLabel.setText("Your progress: " + DataManager.Instance().getScore() + "%");
+        jBar.setValue(DataManager.Instance().getScore());
+    }
+    
     /**
      * @param args the command line arguments
      */
