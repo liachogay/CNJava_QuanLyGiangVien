@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import javax.swing.JOptionPane;
 import org.graalvm.compiler.lir.LIRInstruction;
 
 /**
@@ -28,6 +29,7 @@ public class Round3 extends javax.swing.JFrame {
     
     public Round3() {
         initComponents();
+        _LoadDataToUI();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,13 +65,13 @@ public class Round3 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Adjective");
+        jLabel1.setText("1.Adjective");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Noun");
+        jLabel2.setText("2.Noun");
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Verb");
+        jLabel3.setText("3.Verb");
 
         jTextField1.setEditable(false);
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -83,18 +85,21 @@ public class Round3 extends javax.swing.JFrame {
         jTextField4.setEditable(false);
         jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        jRadioButton1.setText("1");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton1ActionPerformed(evt);
             }
         });
 
+        jRadioButton2.setText("2");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton2ActionPerformed(evt);
             }
         });
 
+        jRadioButton3.setText("3");
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton3ActionPerformed(evt);
@@ -104,18 +109,21 @@ public class Round3 extends javax.swing.JFrame {
         jTextField5.setEditable(false);
         jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        jRadioButton4.setText("1");
         jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton4ActionPerformed(evt);
             }
         });
 
+        jRadioButton5.setText("2");
         jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton5ActionPerformed(evt);
             }
         });
 
+        jRadioButton6.setText("3");
         jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton6ActionPerformed(evt);
@@ -125,18 +133,21 @@ public class Round3 extends javax.swing.JFrame {
         jTextField6.setEditable(false);
         jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        jRadioButton7.setText("1");
         jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton7ActionPerformed(evt);
             }
         });
 
+        jRadioButton8.setText("2");
         jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton8ActionPerformed(evt);
             }
         });
 
+        jRadioButton9.setText("3");
         jRadioButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton9ActionPerformed(evt);
@@ -151,8 +162,18 @@ public class Round3 extends javax.swing.JFrame {
         });
 
         jButton2.setText("Câu tiếp theo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Kết quả");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -322,7 +343,7 @@ public class Round3 extends javax.swing.JFrame {
         jRadioButton7.setSelected(false);
         jRadioButton8.setSelected(false);
     }//GEN-LAST:event_jRadioButton9ActionPerformed
-
+    public int check = 0; 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Boolean Sentence1 = _CheckAswer1();
@@ -330,9 +351,19 @@ public class Round3 extends javax.swing.JFrame {
         Boolean Sentence3 = _CheckAswer3();
         //Nếu cả 3 đều đúng
         if (Sentence1 && Sentence2 && Sentence3){
-            
+            check++;
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        _LoadDataToUI();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Kết quả " + check + "/10!");
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void _LoadDataToUI(){
         Random Random = new Random();
@@ -405,19 +436,19 @@ public class Round3 extends javax.swing.JFrame {
         switch (AnswerSentence2){
             case 0:
                 if (DataManager.Instance().
-                        GetSentenceAdj(jTextField1.getText()).equals(jTextField5.getText())){
+                        GetSentenceNoun(jTextField1.getText()).equals(jTextField5.getText())){
                     ReturnBack=true;
                 }
                 break;
             case 1:
                 if (DataManager.Instance().
-                        GetSentenceAdj(jTextField2.getText()).equals(jTextField5.getText())){
+                        GetSentenceNoun(jTextField2.getText()).equals(jTextField5.getText())){
                     ReturnBack=true;
                 }
                 break;
             case 2:
                 if (DataManager.Instance().
-                        GetSentenceAdj(jTextField3.getText()).equals(jTextField5.getText())){
+                        GetSentenceNoun(jTextField3.getText()).equals(jTextField5.getText())){
                     ReturnBack=true;
                 }
                 break;
@@ -431,19 +462,19 @@ public class Round3 extends javax.swing.JFrame {
         switch (AnswerSentence3){
             case 0:
                 if (DataManager.Instance().
-                        GetSentenceAdj(jTextField1.getText()).equals(jTextField6.getText())){
+                        GetSentenceVerb(jTextField1.getText()).equals(jTextField6.getText())){
                     ReturnBack=true;
                 }
                 break;
             case 1:
                 if (DataManager.Instance().
-                        GetSentenceAdj(jTextField2.getText()).equals(jTextField6.getText())){
+                        GetSentenceVerb(jTextField2.getText()).equals(jTextField6.getText())){
                     ReturnBack=true;
                 }
                 break;
             case 2:
                 if (DataManager.Instance().
-                        GetSentenceAdj(jTextField3.getText()).equals(jTextField6.getText())){
+                        GetSentenceVerb(jTextField3.getText()).equals(jTextField6.getText())){
                     ReturnBack=true;
                 }
                 break;

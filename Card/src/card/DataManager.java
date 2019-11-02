@@ -120,16 +120,16 @@ public class DataManager {
     
     private List<String> _ListUrlImage=Arrays.asList(
             //Kiet
-            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Cry.PNG",
-            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dance.PNG",
-            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dive.PNG",
-            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Draw.PNG",
-            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fish.PNG",
-            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fly.PNG",
-            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Hug.PNG",
-            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Jump.PNG",
-            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Open.PNG",
-            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Play.PNG"
+//            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Cry.PNG",
+//            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dance.PNG",
+//            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dive.PNG",
+//            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Draw.PNG",
+//            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fish.PNG",
+//            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fly.PNG",
+//            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Hug.PNG",
+//            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Jump.PNG",
+//            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Open.PNG",
+//            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Play.PNG"
             //Trung
 //            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Cry.PNG",
 //            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dance.PNG",
@@ -142,16 +142,16 @@ public class DataManager {
 //            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Open.PNG",
 //            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Play.PNG"
             //Phi
-//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Cry.PNG",
-//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Dance.PNG",
-//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Dive.PNG",
-//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Draw.PNG",
-//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Fish.PNG",
-//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Fly.PNG",
-//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Hug.PNG",
-//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Jump.PNG",
-//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Open.PNG",
-//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Play.PNG"
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Cry.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Dance.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Dive.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Draw.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Fish.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Fly.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Hug.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Jump.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Open.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Play.PNG"
    
             
     );
@@ -198,11 +198,11 @@ public class DataManager {
         try {
             //Get file by path file;
             //Kiet
-            File a = new File("C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Data.txt");
+            //File a = new File("C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Data.txt");
             //Trung
             //File a = new File("E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Data.txt");
             //Phi
-//            File a = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Data.txt");
+            File a = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Data.txt");
             List<String> TempFile = new ArrayList<>();
             BR = new BufferedReader(new FileReader(a));
             String line=null;
@@ -239,11 +239,11 @@ public class DataManager {
     
     private void _InitializeRound2(){
         //Kiet
-        File file = new File("C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\DataSpaceRound2.txt");
+        //File file = new File("C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\DataSpaceRound2.txt");
         //Trung
         //File file = new File("E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\DataSpaceRound2.txt");
         //Phi
-//        File file = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataSpaceRound2.txt");
+        File file = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataSpaceRound2.txt");
             Scanner sc = null;
             try {
                 sc = new Scanner(file);
@@ -265,11 +265,11 @@ public class DataManager {
     
     private void _InitializeRound3(){
         //Kiet
-        File file = new File("C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\DataRound3.txt");
+        //File file = new File("C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\DataRound3.txt");
         //Trung
         //File file = new File("E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\DataRound3.txt.txt");
         //Phi
-//        File file = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataRound3.txt.txt");
+        File file = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataRound3.txt");
             Scanner sc = null;
             try {
                 sc = new Scanner(file);
