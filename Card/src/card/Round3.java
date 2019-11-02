@@ -5,6 +5,12 @@
  */
 package card;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
+import org.graalvm.compiler.lir.LIRInstruction;
+
 /**
  *
  * @author virgin
@@ -14,10 +20,15 @@ public class Round3 extends javax.swing.JFrame {
     /**
      * Creates new form Round3
      */
+    private HashMap<Integer,Boolean> _IndexUsed = new HashMap<Integer,Boolean>();
+    
+    private int AnswerSentence1 = -1;
+    private int AnswerSentence2 = -1;
+    private int AnswerSentence3 = -1; 
+    
     public Round3() {
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,7 +71,84 @@ public class Round3 extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Verb");
 
+        jTextField1.setEditable(false);
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jTextField2.setEditable(false);
+        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jTextField3.setEditable(false);
+        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jTextField4.setEditable(false);
+        jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
+
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
+
+        jTextField5.setEditable(false);
+        jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton4ActionPerformed(evt);
+            }
+        });
+
+        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton5ActionPerformed(evt);
+            }
+        });
+
+        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton6ActionPerformed(evt);
+            }
+        });
+
+        jTextField6.setEditable(false);
+        jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton7ActionPerformed(evt);
+            }
+        });
+
+        jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton8ActionPerformed(evt);
+            }
+        });
+
+        jRadioButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton9ActionPerformed(evt);
+            }
+        });
+
         jButton1.setText("Trả lời");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Câu tiếp theo");
 
@@ -80,11 +168,11 @@ public class Round3 extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                                .addComponent(jTextField2))
+                                .addComponent(jTextField1))
                             .addGap(78, 78, 78)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jRadioButton4)
                         .addGap(18, 18, 18)
@@ -129,9 +217,9 @@ public class Round3 extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -172,6 +260,197 @@ public class Round3 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+        AnswerSentence1=0;
+        jRadioButton2.setSelected(false);
+        jRadioButton3.setSelected(false);
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+        AnswerSentence1=1;
+        jRadioButton1.setSelected(false);
+        jRadioButton3.setSelected(false);
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        // TODO add your handling code here:
+        AnswerSentence1=2;
+        jRadioButton1.setSelected(false);
+        jRadioButton2.setSelected(false);
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+        // TODO add your handling code here:
+        AnswerSentence2=0;
+        jRadioButton5.setSelected(false);
+        jRadioButton6.setSelected(false);
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
+
+    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+        // TODO add your handling code here:
+        AnswerSentence2=1;
+        jRadioButton4.setSelected(false);
+        jRadioButton6.setSelected(false);
+    }//GEN-LAST:event_jRadioButton5ActionPerformed
+
+    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
+        // TODO add your handling code here:
+        AnswerSentence2=2;
+        jRadioButton4.setSelected(false);
+        jRadioButton5.setSelected(false);
+    }//GEN-LAST:event_jRadioButton6ActionPerformed
+
+    private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
+        // TODO add your handling code here:
+        AnswerSentence3=0;
+        jRadioButton8.setSelected(false);
+        jRadioButton9.setSelected(false);
+    }//GEN-LAST:event_jRadioButton7ActionPerformed
+
+    private void jRadioButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8ActionPerformed
+        // TODO add your handling code here:
+        AnswerSentence3=1;
+        jRadioButton7.setSelected(false);
+        jRadioButton9.setSelected(false);
+    }//GEN-LAST:event_jRadioButton8ActionPerformed
+
+    private void jRadioButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton9ActionPerformed
+        // TODO add your handling code here:
+        AnswerSentence3=2;
+        jRadioButton7.setSelected(false);
+        jRadioButton8.setSelected(false);
+    }//GEN-LAST:event_jRadioButton9ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Boolean Sentence1 = _CheckAswer1();
+        Boolean Sentence2 = _CheckAswer2();
+        Boolean Sentence3 = _CheckAswer3();
+        //Nếu cả 3 đều đúng
+        if (Sentence1 && Sentence2 && Sentence3){
+            
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void _LoadDataToUI(){
+        Random Random = new Random();
+        int index = Math.abs(Random.nextInt())%DataManager.Instance().GetSizeDataRound3();
+        while(_IndexUsed.containsKey(index)){
+            index = Math.abs(Random.nextInt())%DataManager.Instance().GetSizeDataRound3();
+        }
+        _IndexUsed.put(index,true);
+        DataManager.DataRound3 Temp = DataManager.Instance().GetDataRound3ByIndex(index);
+        jTextField1.setText(Temp.GetAdjective());
+        jTextField2.setText(Temp.GetNoun());
+        jTextField3.setText(Temp.GetVerb());
+        _RandomAppearUI(index);
+    }
+    
+    private void _RandomAppearUI(int index){
+        DataManager.DataRound3 Temp = DataManager.Instance().GetDataRound3ByIndex(index);
+//        Temp.Replace(DataManager.Instance().GetDataRound3ByIndex(index));
+        Random Random = new Random();
+        HashMap<Integer,String> _Mapping = new HashMap<Integer,String>();
+        _Mapping.put(0, Temp.GetSentenceAdjective());
+        _Mapping.put(1, Temp.GetSentenceNoun());
+        _Mapping.put(2, Temp.GetSentenceVerb());
+        
+        HashMap<Integer,Boolean> Randomed = new HashMap<Integer,Boolean>();
+        List<Integer> _RandomToUI = new ArrayList<>();
+        for(int i=0;i<3;i++){
+            int TempInt = Math.abs(Random.nextInt())%3;
+            while(Randomed.containsKey(TempInt)){
+                TempInt = Math.abs(Random.nextInt())%3;
+            }
+            Randomed.put(TempInt,true);
+            _RandomToUI.add(TempInt);
+        }
+        
+        jTextField4.setText(_Mapping.get(_RandomToUI.get(0)));
+        jTextField5.setText(_Mapping.get(_RandomToUI.get(1)));
+        jTextField6.setText(_Mapping.get(_RandomToUI.get(2)));
+    }
+    
+    private Boolean _CheckAswer1(){
+        Boolean ReturnBack = false;
+        
+        switch (AnswerSentence1){
+            case 0:
+                if (DataManager.Instance().
+                        GetSentenceAdj(jTextField1.getText()).equals(jTextField4.getText())){
+                    ReturnBack=true;
+                }
+                break;
+            case 1:
+                if (DataManager.Instance().
+                        GetSentenceAdj(jTextField2.getText()).equals(jTextField4.getText())){
+                    ReturnBack=true;
+                }
+                break;
+            case 2:
+                if (DataManager.Instance().
+                        GetSentenceAdj(jTextField3.getText()).equals(jTextField4.getText())){
+                    ReturnBack=true;
+                }
+                break;
+        }
+        return ReturnBack;
+    }
+    
+    private Boolean _CheckAswer2(){
+        Boolean ReturnBack = false;
+        
+        switch (AnswerSentence2){
+            case 0:
+                if (DataManager.Instance().
+                        GetSentenceAdj(jTextField1.getText()).equals(jTextField5.getText())){
+                    ReturnBack=true;
+                }
+                break;
+            case 1:
+                if (DataManager.Instance().
+                        GetSentenceAdj(jTextField2.getText()).equals(jTextField5.getText())){
+                    ReturnBack=true;
+                }
+                break;
+            case 2:
+                if (DataManager.Instance().
+                        GetSentenceAdj(jTextField3.getText()).equals(jTextField5.getText())){
+                    ReturnBack=true;
+                }
+                break;
+        }
+        return ReturnBack;
+    }
+    
+    private Boolean _CheckAswer3(){
+        Boolean ReturnBack = false;
+        
+        switch (AnswerSentence3){
+            case 0:
+                if (DataManager.Instance().
+                        GetSentenceAdj(jTextField1.getText()).equals(jTextField6.getText())){
+                    ReturnBack=true;
+                }
+                break;
+            case 1:
+                if (DataManager.Instance().
+                        GetSentenceAdj(jTextField2.getText()).equals(jTextField6.getText())){
+                    ReturnBack=true;
+                }
+                break;
+            case 2:
+                if (DataManager.Instance().
+                        GetSentenceAdj(jTextField3.getText()).equals(jTextField6.getText())){
+                    ReturnBack=true;
+                }
+                break;
+        }
+        return ReturnBack;
+    }
+    
     /**
      * @param args the command line arguments
      */

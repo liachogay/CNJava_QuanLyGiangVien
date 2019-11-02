@@ -18,6 +18,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import sun.tools.jstat.Operator;
 
 /**
  *
@@ -33,7 +34,7 @@ public class DataManager {
         return _Instance;
     }
     
-    private class DataRound3{
+    public class DataRound3{
         private String _Adjective;
         private String _Noun;
         private String _Verb;
@@ -50,6 +51,7 @@ public class DataManager {
             _SentenceNoun="";
             _SentenceVerb="";
         }
+
         public DataRound3(String Adj,String Noun,String Verb,
                 String SentenceAdj,String SentenceNoun,String SentencVerb){
             _Adjective=Adj;
@@ -58,6 +60,24 @@ public class DataManager {
             _SentenceAdjective=SentenceAdj;
             _SentenceNoun=SentenceNoun;
             _SentenceVerb=SentencVerb;
+        }
+        public DataRound3(DataRound3 obj){
+            _Adjective=obj.GetAdjective();
+            _Noun=obj.GetNoun();
+            _Verb=obj.GetVerb();
+            _SentenceAdjective=obj.GetAdjective();
+            _SentenceNoun=obj.GetSentenceNoun();
+            _SentenceVerb=obj.GetSentenceVerb();
+        }
+        
+        
+        public void Replace(DataRound3 Obj){
+            _Adjective=Obj.GetAdjective();
+            _Noun=Obj.GetNoun();
+            _Verb=Obj.GetVerb();
+            _SentenceAdjective=Obj.GetSentenceAdjective();
+            _SentenceNoun=Obj.GetSentenceNoun();
+            _SentenceVerb=Obj.GetSentenceVerb();
         }
         
         public String GetAdjective(){
@@ -376,5 +396,21 @@ public class DataManager {
     
     public DataRound3 GetDataRound3ByIndex(int index){
         return _ListDataRond3.get(index);
+    }
+    
+    public int GetSizeDataRound3(){
+        return _ListDataRond3.size();
+    }
+    
+    public String GetSentenceAdj(String adj){
+        return _AdjToSentence.get(adj);
+    }
+    
+    public String GetSentenceNoun(String noun){
+        return _NounToSentence.get(noun);
+    }
+    
+    public String GetSentenceVerb(String verb){
+        return _VerbToSentence.get(verb);
     }
 }
