@@ -16,6 +16,9 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    
+    Card card =new Card();
+    
     public Login() {
         initComponents();
     }
@@ -128,9 +131,9 @@ public class Login extends javax.swing.JFrame {
                 
                 if (dem != 0){
                     this.setVisible(false);
-                    Card card = new Card();
                     card.setVisible(true);
                     DataManager.Instance().setScore(50);
+                    card.UpdateScore();
                     System.out.println(progress);
                     
                 }

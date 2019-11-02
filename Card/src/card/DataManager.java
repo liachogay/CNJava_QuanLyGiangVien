@@ -33,18 +33,83 @@ public class DataManager {
         return _Instance;
     }
     
+    private class DataRound3{
+        private String _Adjective;
+        private String _Noun;
+        private String _Verb;
+        private String _SentenceAdjective;
+        private String _SentenceNoun;
+        private String _SentenceVerb;
+        
+        public DataRound3(){
+            _Adjective="";
+            _Noun="";
+            _Verb="";
+            _Verb="";
+            _SentenceAdjective="";
+            _SentenceNoun="";
+            _SentenceVerb="";
+        }
+        public DataRound3(String Adj,String Noun,String Verb,
+                String SentenceAdj,String SentenceNoun,String SentencVerb){
+            _Adjective=Adj;
+            _Noun=Noun;
+            _Verb=Verb;
+            _SentenceAdjective=SentenceAdj;
+            _SentenceNoun=SentenceNoun;
+            _SentenceVerb=SentencVerb;
+        }
+        
+        public String GetAdjective(){
+            return _Adjective;
+        }
+        public void SetAdjective(String Adj){
+            _Adjective = Adj;
+        }
+        public String GetNoun(){
+            return _Noun;
+        }
+        public void SetNoun(String Noun){
+            _Noun = Noun;
+        }
+        public String GetVerb(){
+            return _Verb;
+        }
+        public void SetVerb(String Verb){
+            _Verb = Verb;
+        }
+        public String GetSentenceAdjective(){
+            return _SentenceAdjective;
+        }
+        public void SetSentenceAdjective(String SentenceAdjective){
+            _SentenceAdjective = SentenceAdjective;
+        }
+        public String GetSentenceNoun(){
+            return _SentenceNoun;
+        }
+        public void SetSentenceNoun(String SentenceNoun){
+            _SentenceNoun = SentenceNoun;
+        }
+        public String GetSentenceVerb(){
+            return _SentenceVerb;
+        }
+        public void SetSentenceVerb(String SentenceVerb){
+            _SentenceVerb = SentenceVerb;
+        }
+    };
+    
     private List<String> _ListUrlImage=Arrays.asList(
             //Kiet
-//            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Cry.PNG",
-//            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dance.PNG",
-//            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dive.PNG",
-//            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Draw.PNG",
-//            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fish.PNG",
-//            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fly.PNG",
-//            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Hug.PNG",
-//            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Jump.PNG",
-//            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Open.PNG",
-//            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Play.PNG"
+            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Cry.PNG",
+            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dance.PNG",
+            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dive.PNG",
+            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Draw.PNG",
+            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fish.PNG",
+            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fly.PNG",
+            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Hug.PNG",
+            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Jump.PNG",
+            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Open.PNG",
+            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Play.PNG"
             //Trung
 //            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Cry.PNG",
 //            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dance.PNG",
@@ -57,16 +122,16 @@ public class DataManager {
 //            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Open.PNG",
 //            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Play.PNG"
             //Phi
-            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Cry.PNG",
-            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Dance.PNG",
-            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Dive.PNG",
-            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Draw.PNG",
-            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Fish.PNG",
-            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Fly.PNG",
-            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Hug.PNG",
-            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Jump.PNG",
-            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Open.PNG",
-            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Play.PNG"
+//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Cry.PNG",
+//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Dance.PNG",
+//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Dive.PNG",
+//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Draw.PNG",
+//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Fish.PNG",
+//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Fly.PNG",
+//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Hug.PNG",
+//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Jump.PNG",
+//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Open.PNG",
+//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Play.PNG"
    
             
     );
@@ -74,6 +139,7 @@ public class DataManager {
     public DataManager(){
         _InitializeRound1();
         _InitializeRound2();
+        _InitializeRound3();
     }
     
     private HashMap<String,String> _ImageToResult = new HashMap<String,String>();
@@ -97,17 +163,26 @@ public class DataManager {
     //Câu ẩn -> cách phát âm
     private HashMap<String,String> _HiddenSentenceToPronounce = new HashMap<String,String>(); 
     
+    private List<DataRound3> _ListDataRond3 = new ArrayList<>();
+    
+    private HashMap<String,String> _AdjToSentence = new HashMap<String,String>();
+    
+    private HashMap<String,String> _NounToSentence = new HashMap<String,String>();
+    
+    private HashMap<String,String> _VerbToSentence = new HashMap<String,String>();
+    
+    private int _Score  = 0;
     
     private void _InitializeRound1(){
         BufferedReader BR = null;
         try {
             //Get file by path file;
             //Kiet
-            //File a = new File("C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Data.txt");
+            File a = new File("C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Data.txt");
             //Trung
             //File a = new File("E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Data.txt");
             //Phi
-            File a = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Data.txt");
+//            File a = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Data.txt");
             List<String> TempFile = new ArrayList<>();
             BR = new BufferedReader(new FileReader(a));
             String line=null;
@@ -144,11 +219,11 @@ public class DataManager {
     
     private void _InitializeRound2(){
         //Kiet
-        //File file = new File("C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\DataSpaceRound2.txt");
+        File file = new File("C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\DataSpaceRound2.txt");
         //Trung
         //File file = new File("E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\DataSpaceRound2.txt");
         //Phi
-        File file = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataSpaceRound2.txt");
+//        File file = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataSpaceRound2.txt");
             Scanner sc = null;
             try {
                 sc = new Scanner(file);
@@ -167,6 +242,59 @@ public class DataManager {
                 Logger.getLogger(Round2.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
+    
+    private void _InitializeRound3(){
+        //Kiet
+        File file = new File("C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\DataRound3.txt");
+        //Trung
+        //File file = new File("E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\DataRound3.txt.txt");
+        //Phi
+//        File file = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataRound3.txt.txt");
+            Scanner sc = null;
+            try {
+                sc = new Scanner(file);
+                while(sc.hasNextLine()){
+                    DataRound3 Temp = new DataRound3();
+                    String Adj = null;
+                    String Noun = null;
+                    String Verb = null;
+                    String SentenceAdj = null;
+                    String SentenceNoun = null;
+                    String SentenceVerb = null;
+                    if (sc.hasNextLine()){
+                        Adj = sc.nextLine();
+                        Noun = sc.nextLine();
+                        Verb = sc.nextLine();
+                        SentenceAdj = sc.nextLine();
+                        SentenceNoun = sc.nextLine();
+                        SentenceVerb = sc.nextLine();
+                    }
+                    Temp.SetAdjective(Adj);
+                    Temp.SetNoun(Noun);
+                    Temp.SetVerb(Verb);
+                    Temp.SetSentenceAdjective(SentenceAdj);
+                    Temp.SetSentenceNoun(SentenceNoun);
+                    Temp.SetSentenceVerb(SentenceVerb);
+                    _AdjToSentence.put(Adj, SentenceAdj);
+                    _NounToSentence.put(Noun, SentenceNoun);
+                    _VerbToSentence.put(Verb,SentenceVerb);
+                    _ListDataRond3.add(Temp);
+//                    _PronounceToHiddenSentence.put(Pronounce, HiddenSentence);
+//                    _HiddenSentenceToPronounce.put(HiddenSentence, Pronounce);
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Round2.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            for(int i=0;i<_ListDataRond3.size();i++){
+                System.out.println(_ListDataRond3.get(i).GetAdjective());
+                System.out.println(_ListDataRond3.get(i).GetNoun());
+                System.out.println(_ListDataRond3.get(i).GetVerb());
+                System.out.println(_ListDataRond3.get(i).GetSentenceAdjective());
+                System.out.println(_ListDataRond3.get(i).GetSentenceNoun());
+                System.out.println(_ListDataRond3.get(i).GetSentenceVerb());
+            }
+    }
+    
     
     public int GetSize(){
         return _Result.size();
@@ -239,11 +367,14 @@ public class DataManager {
     public String GetPronounceByIndexRound2(int index){
         return _ListPronounceRound2.get(index);
     }
-    public int score  = 0;
     public void setScore(int score){
-        this.score = score;
+        this._Score = score;
     }
     public int getScore(){
-        return this.score;
+        return this._Score;
+    }
+    
+    public DataRound3 GetDataRound3ByIndex(int index){
+        return _ListDataRond3.get(index);
     }
 }
