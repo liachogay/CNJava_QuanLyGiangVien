@@ -352,12 +352,31 @@ public class Round3 extends javax.swing.JFrame {
         //Nếu cả 3 đều đúng
         if (Sentence1 && Sentence2 && Sentence3){
             check++;
+            JOptionPane.showMessageDialog(this, "Bạn đã trả lời đúng!!");
         }
+        else {
+            JOptionPane.showMessageDialog(this, "Bạn đã trả lời sai!!");
+        }
+        jButton1.setEnabled(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         _LoadDataToUI();
+        jButton1.setEnabled(true);
+        jRadioButton1.setSelected(false);
+        jRadioButton2.setSelected(false);
+        jRadioButton3.setSelected(false);
+        jRadioButton4.setSelected(false);
+        jRadioButton5.setSelected(false);
+        jRadioButton6.setSelected(false);
+        jRadioButton7.setSelected(false);
+        jRadioButton8.setSelected(false);
+        jRadioButton9.setSelected(false);
+        if (check == 10){
+            JOptionPane.showMessageDialog(this, "Chúc mừng bạn đã hoàn thành xuất sắc round 3!!");
+            System.exit(0);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
