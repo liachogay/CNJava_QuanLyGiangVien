@@ -32,6 +32,7 @@ public class Card extends javax.swing.JFrame {
     Round2 JframeRound2 = new Round2();
     
     static int x;
+    static int y;
     
     int IndexUsing = -1;
     
@@ -406,6 +407,7 @@ public class Card extends javax.swing.JFrame {
              if(x >= 4 && x <= 10){
                 jButton4.setVisible(true);
         }
+           
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -424,7 +426,7 @@ public class Card extends javax.swing.JFrame {
         String text1 = jRadioButton1.getText();
         String text2 = jRadioButton2.getText();
         //int x = 0;
-        int y = 0 ;
+        //int y = 0 ;
         if(jRadioButton1.isSelected()){
         if(!text.equals(text1)){
             // biến này để xử lý text không rỗng

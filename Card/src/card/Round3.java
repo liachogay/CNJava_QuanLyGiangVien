@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
  * @author virgin
  */
 public class Round3 extends javax.swing.JFrame {
+       
 
     /**
      * Creates new form Round3
@@ -29,6 +30,8 @@ public class Round3 extends javax.swing.JFrame {
     public Round3() {
         initComponents();
         _LoadDataToUI();
+        jButton2.setVisible(false);
+        jButton3.setVisible(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -357,6 +360,8 @@ public class Round3 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Bạn đã trả lời sai!!");
         }
         jButton1.setEnabled(false);
+        jButton2.setVisible(true);
+        jButton3.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -376,6 +381,9 @@ public class Round3 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Chúc mừng bạn đã hoàn thành xuất sắc round 3!!");
             System.exit(0);
         }
+        jButton2.setVisible(false);
+        jButton3.setVisible(false);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
