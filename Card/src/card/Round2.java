@@ -59,14 +59,11 @@ public class Round2 extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jBar = new javax.swing.JProgressBar();
+        jProgressLabel = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        txtPhase_Round2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPhase_Round2ActionPerformed(evt);
-            }
-        });
 
         jRad1_round2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,61 +105,78 @@ public class Round2 extends javax.swing.JFrame {
             }
         });
 
+        jTextField1.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(txtPhase_Round2, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 18, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(153, 153, 153)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton1)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(39, 39, 39)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jButton2)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(jRad1_round2)
+                                                        .addGap(212, 212, 212)
+                                                        .addComponent(jRad2_round2)))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton3))
+                                    .addComponent(txtPhase_Round2, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(42, 42, 42)))
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jRad1_round2)
-                        .addGap(40, 40, 40)
-                        .addComponent(jRad2_round2)
-                        .addGap(54, 54, 54)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jProgressLabel)
+                            .addComponent(jBar, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jProgressLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(txtPhase_Round2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(83, 83, 83)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jRad1_round2)
-                                    .addComponent(jRad2_round2)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(71, 71, 71)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(105, Short.MAX_VALUE))
+                            .addComponent(jRad2_round2)
+                            .addComponent(jRad1_round2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)))
+                .addComponent(jBar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtPhase_Round2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhase_Round2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPhase_Round2ActionPerformed
     
     public int count = 0;
     
@@ -187,18 +201,29 @@ public class Round2 extends javax.swing.JFrame {
         jButton3.setVisible(true);
         if (jRad1_round2.isSelected()){
             String Answer =  jRad1_round2.getText();
-            if (DataManager.Instance().GetHiddenSentenceByPronounce(Answer).equals(txtPhase_Round2.getText())){
+            if (DataManager.Instance().GetSentenceByPronounce(Answer).equals(txtPhase_Round2.getText())){
                 JOptionPane.showMessageDialog(null, "Bạn đã trả lời đúng!!!");
                 z+=1;
+                int progress = 0;
+                progress = DataManager.Instance().getScore();
+                progress+=10;
+                DataManager.Instance().setScore(progress);
+                this.UpdateScore();
+                
             }else{
                 JOptionPane.showMessageDialog(null, "Bạn đã trả lời sai!!!");
             }
         }
         else if (jRad2_round2.isSelected()){
             String Answer =  jRad2_round2.getText();
-            if (DataManager.Instance().GetHiddenSentenceByPronounce(Answer).equals(txtPhase_Round2.getText())){
+            if (DataManager.Instance().GetSentenceByPronounce(Answer).equals(txtPhase_Round2.getText())){
                 JOptionPane.showMessageDialog(null, "Bạn đã trả lời đúng!!!");
                 z+=1;
+                int progress = 0;
+                progress = DataManager.Instance().getScore();
+                progress+=10;
+                DataManager.Instance().setScore(progress);
+                this.UpdateScore();
             }else{
                 JOptionPane.showMessageDialog(null, "Bạn đã trả lời sai!!!");
             }
@@ -246,10 +271,11 @@ public class Round2 extends javax.swing.JFrame {
             }
             Appear[0] = IndexAnother;
         }
+        String Pronounce = DataManager.Instance().GetPronounceByIndexRound2(_ListIndexGot.get(count));
         jRad1_round2.setText(DataManager.Instance().GetPronounceByIndexRound2(Appear[0]));
         jRad2_round2.setText(DataManager.Instance().GetPronounceByIndexRound2(Appear[1]));
-        txtPhase_Round2.setText(DataManager.Instance().GetHiddenSentenceByPronounce(
-            DataManager.Instance().GetPronounceByIndexRound2(_ListIndexGot.get(count))));
+        jTextField1.setText(DataManager.Instance().GetWordByPronounce(Pronounce));
+        txtPhase_Round2.setText(DataManager.Instance().GetSentenceByPronounce(Pronounce));
         count++;
     }
     
@@ -285,15 +311,23 @@ public class Round2 extends javax.swing.JFrame {
             }
         });
     }
+    public void UpdateScore(){
+        /*Progress Bar*/
+        jProgressLabel.setText("Your progress: " + DataManager.Instance().getScore() + "%");
+        jBar.setValue(DataManager.Instance().getScore());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JProgressBar jBar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jProgressLabel;
     private javax.swing.JRadioButton jRad1_round2;
     private javax.swing.JRadioButton jRad2_round2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtPhase_Round2;
     // End of variables declaration//GEN-END:variables
 }

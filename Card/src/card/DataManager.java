@@ -130,27 +130,27 @@ public class DataManager {
 //            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Open.PNG",
 //            "C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Play.PNG"
             //Trung
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Cry.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dance.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dive.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Draw.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fish.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fly.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Hug.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Jump.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Open.PNG",
-            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Play.PNG"
+//            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Cry.PNG",
+//            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dance.PNG",
+//            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Dive.PNG",
+//            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Draw.PNG",
+//            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fish.PNG",
+//            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Fly.PNG",
+//            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Hug.PNG",
+//            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Jump.PNG",
+//            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Open.PNG",
+//            "E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Play.PNG"
             //Phi
-//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Cry.PNG",
-//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Dance.PNG",
-//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Dive.PNG",
-//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Draw.PNG",
-//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Fish.PNG",
-//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Fly.PNG",
-//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Hug.PNG",
-//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Jump.PNG",
-//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Open.PNG",
-//            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Play.PNG"
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Cry.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Dance.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Dive.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Draw.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Fish.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Fly.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Hug.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Jump.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Open.PNG",
+            "/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Play.PNG"
    
             
     );
@@ -182,6 +182,18 @@ public class DataManager {
     //Câu ẩn -> cách phát âm
     private HashMap<String,String> _HiddenSentenceToPronounce = new HashMap<String,String>(); 
     
+    private HashMap<String,String> _PronounceToSentence = new HashMap<String,String>();
+    
+    //Cách phát âm -> từ
+    private HashMap<String,String> _PronounceToWord = new HashMap<String,String>();
+    
+    //Cách từ -> phát âm
+    private HashMap<String,String> _WordToPronounce = new HashMap<String,String>();
+    
+    private HashMap<String,String> _WordToSentence = new HashMap<String,String>();
+    
+    private HashMap<String,String> _SentenceToWord = new HashMap<String,String>();
+            
     private List<DataRound3> _ListDataRond3 = new ArrayList<>();
     
     private HashMap<String,String> _AdjToSentence = new HashMap<String,String>();
@@ -199,9 +211,9 @@ public class DataManager {
             //Kiet
             //File a = new File("C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Data.txt");
             //Trung
-            File a = new File("E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Data.txt");
+            //File a = new File("E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\Data.txt");
             //Phi
-//            File a = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Data.txt");
+            File a = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/Data.txt");
             List<String> TempFile = new ArrayList<>();
             BR = new BufferedReader(new FileReader(a));
             String line=null;
@@ -240,22 +252,29 @@ public class DataManager {
         //Kiet
         //File file = new File("C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\DataSpaceRound2.txt");
         //Trung
-        File file = new File("E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\DataSpaceRound2.txt");
+        //File file = new File("E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\DataSpaceRound2.txt");
         //Phi
-//        File file = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataSpaceRound2.txt");
+        File file = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataSpaceRound2.txt");
             Scanner sc = null;
             try {
                 sc = new Scanner(file);
                 String Pronounce = null;
+                String Word = null;
                 String HiddenSentence = null;
+                String Sentence = null;
                 while(sc.hasNextLine()){
                     Pronounce = sc.nextLine();
-                    if (sc.hasNextLine()){
-                        HiddenSentence = sc.nextLine();
-                    }
+                    Word = sc.nextLine();
+                    HiddenSentence = sc.nextLine();
+                    Sentence = sc.nextLine();
                     _ListPronounceRound2.add(Pronounce);
+                    _PronounceToSentence.put(Pronounce, Sentence);
+                    _PronounceToWord.put(Pronounce, Word);
+                    _WordToPronounce.put(Word, Pronounce);
                     _PronounceToHiddenSentence.put(Pronounce, HiddenSentence);
                     _HiddenSentenceToPronounce.put(HiddenSentence, Pronounce);
+                    _WordToSentence.put(Word, Sentence);
+                    _SentenceToWord.put(Sentence,Word);
                 }
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Round2.class.getName()).log(Level.SEVERE, null, ex);
@@ -266,9 +285,9 @@ public class DataManager {
         //Kiet
         //File file = new File("C:\\Users\\ASUS\\Desktop\\Project_HCMUE\\CNJava_QuanLyGiangVien\\Card\\src\\card\\DataRound3.txt");
         //Trung
-        File file = new File("E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\DataRound3.txt");
+//        File file = new File("E:\\tool\\GitKraken\\CNJava_QuanLyGiangVien\\Card\\src\\card\\DataRound3.txt");
         //Phi
-//        File file = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataRound3.txt");
+        File file = new File("/Users/virgin/Desktop/CNJava_QuanLyGiangVien/Card/src/card/DataRound3.txt");
             Scanner sc = null;
             try {
                 sc = new Scanner(file);
@@ -411,5 +430,25 @@ public class DataManager {
     
     public String GetSentenceVerb(String verb){
         return _VerbToSentence.get(verb);
+    }
+    
+    public String GetWordByPronounce(String Pronounce){
+        return _PronounceToWord.get(Pronounce);
+    }
+    
+    public String GetPronounceByWord(String Word){
+        return _WordToPronounce.get(Word);
+    }
+    
+    public String GetWordBySentence(String Sentence){
+        return _SentenceToWord.get(Sentence);
+    }
+    
+    public String GetSentenceByWord(String Word){
+        return _WordToSentence.get(Word);
+    }
+    
+    public String GetSentenceByPronounce(String Pronounce){
+        return _PronounceToSentence.get(Pronounce);
     }
 }

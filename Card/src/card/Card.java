@@ -34,6 +34,8 @@ public class Card extends javax.swing.JFrame {
     static int x;
     static int y;
     
+    static int demCau = 0;
+    
     int IndexUsing = -1;
     
     private HashMap<Integer,Boolean> Randomed = new HashMap<Integer,Boolean>();
@@ -52,6 +54,7 @@ public class Card extends javax.swing.JFrame {
 //        for(String i :_ImageToResult.keySet()){
 //            System.out.print(i + " " + _ImageToResult.get(i)+'\n');
 //        }
+        jButton6.setVisible(false);
         
 /*=======
 >>>>>>> Stashed changes*/
@@ -215,6 +218,7 @@ public class Card extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jBar = new javax.swing.JProgressBar();
         jProgressLabel = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -301,6 +305,13 @@ public class Card extends javax.swing.JFrame {
             }
         });
 
+        jButton6.setText("Chơi lại");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -313,7 +324,9 @@ public class Card extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,7 +355,9 @@ public class Card extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
@@ -388,24 +403,31 @@ public class Card extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        int index = Math.abs(new Random().nextInt()%DataManager.Instance().GetSize());
-        
-        while(index == -1 || Randomed.containsKey(index)){
-            index = Math.abs((new Random().nextInt())%DataManager.Instance().GetSize());      
-        }  
-        IndexUsing = index;
-        
-        DataManager.Instance().AddListIndexGot(IndexUsing);
-        Randomed.put(IndexUsing, true);
-        
-        jPanel1.setVisible(true);
-        jPanel2.setVisible(false);
-        jRadioButton1.setSelected(false);
-        jRadioButton2.setSelected(false);
-        jButton5.show();
-        showImage(Math.abs((index)));
-             if(x >= 4 && x <= 10){
-                jButton4.setVisible(true);
+        if (demCau == 9){
+            jButton6.setVisible(true);
+        }
+        else{
+            demCau++;
+            
+            int index = Math.abs(new Random().nextInt()%DataManager.Instance().GetSize());
+
+            while(index == -1 || Randomed.containsKey(index)){
+                index = Math.abs((new Random().nextInt())%DataManager.Instance().GetSize());      
+            }  
+            IndexUsing = index;
+
+            DataManager.Instance().AddListIndexGot(IndexUsing);
+            Randomed.put(IndexUsing, true);
+
+            jPanel1.setVisible(true);
+            jPanel2.setVisible(false);
+            jRadioButton1.setSelected(false);
+            jRadioButton2.setSelected(false);
+            jButton5.show();
+            showImage(Math.abs((index)));
+                 if(x >= 4 && x <= 10){
+                    jButton4.setVisible(true);
+            }
         }
            
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -414,49 +436,58 @@ public class Card extends javax.swing.JFrame {
           if (x >= 4 && x <= 10){
             this.setVisible(false);
             JframeRound2.setVisible(true);
+            JframeRound2.UpdateScore();
             JframeRound2.OnlyCallOneTime();
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        jButton1.setVisible(true);
-        jButton2.setVisible(true);
-        jButton3.setVisible(true);
-        String text = txtWords.getText();
-        String text1 = jRadioButton1.getText();
-        String text2 = jRadioButton2.getText();
-        //int x = 0;
-        //int y = 0 ;
-        if(jRadioButton1.isSelected()){
-        if(!text.equals(text1)){
-            // biến này để xử lý text không rỗng
-            y++;
+        if (!jRadioButton1.isSelected() && !jRadioButton2.isSelected()){
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn đáp án!");
         }
         else{
-            x++;
-        } 
-        }
-        else{
-        if(!text.equals(text2)) {
-            y++;
-        }
-        else{
-             x++;
-        }
-        }
-        if(x > 10){
-                 x=10;
-          
-           }
-        else if(x==10){
-             JOptionPane.showMessageDialog(this, "Bạn đã xuất sắc hoàn thành round 1");
-        }
+            jButton1.setVisible(true);
+            jButton2.setVisible(true);
+            jButton3.setVisible(true);
+            String text = txtWords.getText();
+            String text1 = jRadioButton1.getText();
+            String text2 = jRadioButton2.getText();
+            //int x = 0;
+            //int y = 0 ;
+            if(jRadioButton1.isSelected()){
+                if(text.equals(text1)){
+                    // biến này để xử lý text không rỗng
+                    x++;
+                }           
+            }
 
-            JOptionPane.showMessageDialog(this, "Kết quả: " + x + "/10");
-            jButton5.hide();
-            
-                // TODO add your handling code here:
+            if(jRadioButton2.isSelected()){
+                if(text.equals(text2)){
+                    // biến này để xử lý text không rỗng
+                    x++;
+                }           
+            }
+
+            if(x > 10){
+                x=10;
+
+            }
+            else if(x==10){
+                 JOptionPane.showMessageDialog(this, "Bạn đã xuất sắc hoàn thành round 1");
+            }
+
+                JOptionPane.showMessageDialog(this, "Kết quả: " + x + "/10");
+                jButton5.hide();
+        }
+                    // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Card card = new Card();
+        card.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     public void UpdateScore(){
         /*Progress Bar*/
@@ -508,6 +539,7 @@ public class Card extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
